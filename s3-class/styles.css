@@ -1,0 +1,142 @@
+/* Base styles */
+body {
+    background-color: #222222;
+    color: #e0e0e0; 
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-y: auto;  /* Allow vertical scrolling */
+    cursor: none;
+    position: relative;
+}
+
+/* Header styles */
+header {
+    background-color: #2A2A2A;
+    padding: 20px;
+    text-align: center;
+    border-bottom: 1px solid #3D3D3D;
+}
+
+header h1 {
+    margin: 0;
+    color: #e0e0e0; 
+}
+
+/* Navigation styles */
+nav {
+    background-color: #2A2A2A;
+    padding: 10px;
+    text-align: center;
+}
+
+nav a {
+    color: #7676e3; /* Lavender */
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #D8BFD8; /* Subtle complementary color for hover */ 
+}
+
+/* Main content styles */
+main {
+    padding: 20px;
+}
+
+main h2 {
+    color: #7676e3; /* Lavender */
+}
+
+main p {
+    line-height: 1.6;
+}
+li.hidden {
+    display: none;
+}
+/* Footer styles */
+footer {
+    background-color: #2A2A2A;
+    padding: 10px;
+    text-align: center;
+    border-top: 1px solid #3D3D3D;
+}
+
+footer p {
+    margin: 0;
+    color: #e0e0e0; 
+}
+
+/* Button styles */
+button {
+    background-color: #7676e3; /* Lavender */
+    color: #222; /* Darker text for contrast */
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #D8BFD8; /* Subtle complementary color for hover */
+    color: white; 
+}
+
+/* Card styles */
+.card {
+    background-color: #2A2A2A;
+    border: 1px solid #3D3D3D;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.card h3 {
+    color: #D8BFD8; /* Subtle complementary color */
+}
+
+.card p {
+    color: #e0e0e0; 
+}
+
+/* Mouse follower styles */
+#follower {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background-color: #7676e3; /* Lavender */
+    border-radius: 70%;
+    pointer-events: none; 
+    opacity: 0.8;
+    transition: transform 0.05s, opacity 0.05s;
+    z-index: 1000; 
+    box-shadow: 0 0 10px #7676e3, 0 0 20px #7676e3, 0 0 30px #7676e3; 
+}
+
+.trail {
+    position: absolute;
+    width: 25px; 
+    height: 25px; 
+    background-color: #7676e3; /* Lavender */
+    border-radius: 50%;
+    pointer-events: none; 
+    opacity: 0.8;
+    z-index: 999; 
+    box-shadow: 0 0 5px #7676e3, 0 0 10px #7676e3, 0 0 15px #8888d1;
+    animation: fadeOut 0.3s forwards; 
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        transform: scale(0.2); 
+    }
+}
+
+a {
+    color: #7676e3; /* Lavender */
+    text-decoration: none;
+}

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programs Repository</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="follower"></div>
+    <script src="index.js"></script>
+    <header>
+        <h1>Programs Repository</h1>
+    </header>
+    <main>
+        <section id="java">
+            <h2>Java Programs</h2>
+            <ul>
+                <li><a href="java/amstrong.java" download>amstrong.java</a></li>
+                <li><a href="java/bank.java" download>bank.java</a></li>
+                <li><a href="java/book.java" download>book.java</a></li>
+                <li><a href="java/Box.java" download>Box.java</a></li>
+                <li><a href="java/box.java" download>box.java</a></li>
+                <li><a href="java/calculator.java" download>calculator.java</a></li>
+                <li><a href="java/demo3.java" download>demo3.java</a></li>
+                <li><a href="java/digits.java" download>digits.java</a></li>
+                <li><a href="java/exeption.java" download>exeption.java</a></li>
+                <li><a href="java/fibnocci.java" download>fibnocci.java</a></li>
+                <li><a href="java/filecopy.java" download>filecopy.java</a></li>
+                <li><a href="java/fileread.java" download>fileread.java</a></li>
+                <li><a href="java/filewriter.java" download>filewriter.java</a></li>
+                <li><a href="java/inheritance.java" download>inheritance.java</a></li>
+                <li><a href="java/io.java" download>io.java</a></li>
+            
+                <li><a href="#" id="readMore">Read More</a></li> 
+            
+                <li class="hidden"><a href="java/lab.java" download>lab.java</a></li>
+                <li class="hidden"><a href="java/lettercount.java" download>lettercount.java</a></li>
+                <li class="hidden"><a href="java/Isnumber.java" download>Isnumber.java</a></li>
+                <li class="hidden"><a href="java/Main.java" download>Main.java</a></li>
+                <li class="hidden"><a href="java/matrixadd.java" download>matrixadd.java</a></li>
+                <li class="hidden"><a href="java/matrixmulti.java" download>matrixmulti.java</a></li>
+                <li class="hidden"><a href="java/Multipleinheritance.java" download>Multipleinheritance.java</a></li>
+                <li class="hidden"><a href="java/object.java" download>object.java</a></li>
+                <li class="hidden"><a href="java/odd.java" download>odd.java</a></li>
+                <li class="hidden"><a href="java/rev array.java" download>rev array.java</a></li>
+                <li class="hidden"><a href="java/rmduplicate.java" download>rmduplicate.java</a></li>
+                <li class="hidden"><a href="java/shape.java" download>shape.java</a></li>
+                <li class="hidden"><a href="java/sorting.java" download>sorting.java</a></li>
+                <li class="hidden"><a href="java/stringpalin.java" download>stringpalin.java</a></li>
+                <li class="hidden"><a href="java/stringtoken.java" download>stringtoken.java</a></li>
+                <li class="hidden"><a href="java/theater.java" download>theater.java</a></li>
+                <li class="hidden"><a href="java/theatertest.java" download>theatertest.java</a></li>
+                <li class="hidden"><a href="java/throww.java" download>throww.java</a></li>
+                <li class="hidden"><a href="java/Train.java" download>Train.java</a></li>
+                <li class="hidden"><a href="java/trycatch.java" download>trycatch.java</a></li>
+                <li class="hidden"><a href="java/wordrev.java" download>wordrev.java</a></li> 
+            </ul>
+                <!-- Add more Java programs as needed -->
+            </ul>
+            <a href="/java.zip"><button >Download All Java Files</button></a>
+            <script>
+                const readMoreLink = document.getElementById('readMore');
+                const hiddenItems = document.querySelectorAll('li.hidden');
+                
+                readMoreLink.addEventListener('click', function(event) {
+                    event.preventDefault(); 
+                
+                    for (let i = 0; i < hiddenItems.length; i++) {
+                        hiddenItems[i].classList.toggle('hidden'); 
+                    }
+                
+                    this.textContent = this.textContent === 'Read More' ? 'Read Less' : 'Read More'; 
+                });
+                </script>
+        </section>
+        <section id="data-structures">
+            <h2>Data Structures Programs</h2>
+            <ul>
+                <li><a href="programs/data-structures/Program1.s" download>Program1.s</a></li>
+                <li><a href="programs/data-structures/Program2.s" download>Program2.s</a></li>
+                <!-- Add more Data Structures programs as needed -->
+            </ul>
+            <a href="/c prgms.zip"><button >Download All Data Structures Files</button></a>
+        </section>
+    </main>
+    <footer>
+        <a href="/All pg Java & DS.zip"><button >Download All Files</button></a>
+    </footer>
+</body>
+</html>
