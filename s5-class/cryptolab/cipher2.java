@@ -1,5 +1,4 @@
 import java.util.*;
-import java.util.Scanner;
 
 public class cipher2 {
 
@@ -98,6 +97,55 @@ public class cipher2 {
         return plain.toString();
     }
 
+    public static String railencrypt(String text, int key) {
+        if (key <= 1) return text;
+        StringBuilder[] rail = new StringBuilder[key];
+        for (int i = 0; i < key; i++) rail[i] = new StringBuilder();
+
+        int dir = 1, row = 0;
+        for (char c : text.toCharArray()) {
+            rail[row].append(c);
+            row += dir;
+            if (row == 0 || row == key - 1) dir *= -1;
+        }
+
+        StringBuilder result = new StringBuilder();
+        for (StringBuilder sb : rail) result.append(sb);
+        return result.toString();
+    }
+
+    public static String raildecrypt(String cipher, int key) {
+        if (key <= 1) return cipher;
+        int len = cipher.length();
+        boolean[][] mark = new boolean[key][len];
+
+        int dir = 1, row = 0;
+        for (int i = 0; i < len; i++) {
+            mark[row][i] = true;
+            row += dir;
+            if (row == 0 || row == key - 1) dir *= -1;
+        }
+
+        char[] result = new char[len];
+        int idx = 0;
+        for (int i = 0; i < key; i++) {
+            for (int j = 0; j < len; j++) {
+                if (mark[i][j] && idx < len) {
+                    result[j] = cipher.charAt(idx++);
+                }
+            }
+        }
+
+        StringBuilder plain = new StringBuilder();
+        row = 0; dir = 1;
+        for (int i = 0; i < len; i++) {
+            plain.append(result[i]);
+            row += dir;
+            if (row == 0 || row == key - 1) dir *= -1;
+        }
+        return plain.toString();
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int ch;
@@ -118,6 +166,15 @@ public class cipher2 {
                     break;
             
                 case 2:
+                    System.out.println("Enter plaintext: ");
+                    String railText = sc.nextLine();
+                    System.out.println("Enter key: ");
+                    int railKey = sc.nextInt();
+                    sc.nextLine();
+                    String railEncrypted = railencrypt(railText, railKey);
+                    System.out.println("Encrypted text: " + railEncrypted);
+                    String railDecrypted = raildecrypt(railEncrypted, railKey);
+                    System.out.println("Decrypted text: " + railDecrypted);
                     break;
 
                 case 3:
