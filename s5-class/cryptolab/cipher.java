@@ -51,71 +51,112 @@ public class cipher {
         return plainText.toString();
     }
     
-    static int mod26(int x) {
-        x = x % 26;
-        if (x < 0) x += 26;
-        return x;
-    }
-
-    static int[][] getKeyMatrix(String key) {
-        int[][] keyMatrix = new int[2][2];
-        keyMatrix[0][0] = (key.charAt(0) - 'A') % 26;
-        keyMatrix[0][1] = (key.charAt(1) - 'A') % 26;
-        keyMatrix[1][0] = (key.charAt(2) - 'A') % 26;
-        keyMatrix[1][1] = (key.charAt(3) - 'A') % 26;
-        return keyMatrix;
-    }
-
-    static String hillencrypt(String text, int[][] keyMatrix) {
-        text = text.toUpperCase().replaceAll("[^A-Z]", "");
-        if (text.length() % 2 != 0) text += "X";
-        StringBuilder cipher = new StringBuilder();
-        for (int i = 0; i < text.length(); i += 2) {
-            int[] pair = {text.charAt(i) - 'A', text.charAt(i + 1) - 'A'};
-            int c1 = mod26(keyMatrix[0][0] * pair[0] + keyMatrix[0][1] * pair[1]);
-            int c2 = mod26(keyMatrix[1][0] * pair[0] + keyMatrix[1][1] * pair[1]);
-            cipher.append((char) (c1 + 'A')).append((char) (c2 + 'A'));
-        }
-        return cipher.toString();
+    public static int modInverse(int a, int m) {
+    	a = a % m;
+    	for (int x = 1; x < m; x++) {
+      		if ((a * x) % m == 1)
+        	return x;
+    	}
+    	return -1;
     }
     
+    
+    public static String hillEncrypt(String plaintext, int[][] keyMatrix) {
+    	plaintext = plaintext.toUpperCase();
+    	int[] vector = new int[3];
+    	for (int i = 0; i < 3; i++) {
+      	vector[i] = plaintext.charAt(i) - 'A';
+    	}
 
-    static int[][] inverseKeyMatrix(int[][] keyMatrix) {
-        int det = keyMatrix[0][0] * keyMatrix[1][1] - keyMatrix[0][1] * keyMatrix[1][0];
-        det = mod26(det);
-        int invDet = -1;
-        for (int i = 0; i < 26; i++) {
-            if (mod26(det * i) == 1) {
-                invDet = i;
-                break;
-            }
-        }
-        if (invDet == -1) throw new IllegalArgumentException("Key matrix is not invertible.");
-        int[][] inv = new int[2][2];
-        inv[0][0] = mod26(keyMatrix[1][1] * invDet);
-        inv[0][1] = mod26(-keyMatrix[0][1] * invDet);
-        inv[1][0] = mod26(-keyMatrix[1][0] * invDet);
-        inv[1][1] = mod26(keyMatrix[0][0] * invDet);
-        return inv;
+    	int[] result = new int[3];
+    	for (int i = 0; i < 3; i++) {
+      		result[i] = 0;
+      		for (int j = 0; j < 3; j++) {
+        		result[i] += keyMatrix[i][j] * vector[j];
+      		}
+      		result[i] %= 26;
+    	}
+
+    	StringBuilder encrypted = new StringBuilder();
+    	for (int val : result) {
+      	encrypted.append((char) (val + 'A'));
+    	}
+    	return encrypted.toString();
+     }
+    
+    public static int determinant(int[][] m) {
+    	return m[0][0] * (m[1][1] * m[2][2] - m[1][2] * m[2][1])
+        	- m[0][1] * (m[1][0] * m[2][2] - m[1][2] * m[2][0])
+        	+ m[0][2] * (m[1][0] * m[2][1] - m[1][1] * m[2][0]);
     }
+    
+    public static int[][] adjugate(int[][] m) {
+    	int[][] adj = new int[3][3];
 
-    static String hilldecrypt(String cipher, int[][] keyMatrix) {
-        int[][] invKey = inverseKeyMatrix(keyMatrix);
-        StringBuilder plain = new StringBuilder();
-        for (int i = 0; i < cipher.length(); i += 2) {
-            int[] pair = {cipher.charAt(i) - 'A', cipher.charAt(i + 1) - 'A'};
-            int p1 = mod26(invKey[0][0] * pair[0] + invKey[0][1] * pair[1]);
-            int p2 = mod26(invKey[1][0] * pair[0] + invKey[1][1] * pair[1]);
-            plain.append((char) (p1 + 'A')).append((char) (p2 + 'A'));
-        }
-        return plain.toString();
+    	adj[0][0] = (m[1][1] * m[2][2] - m[1][2] * m[2][1]);
+    	adj[0][1] = -(m[1][0] * m[2][2] - m[1][2] * m[2][0]);
+    	adj[0][2] = (m[1][0] * m[2][1] - m[1][1] * m[2][0]);
+
+    	adj[1][0] = -(m[0][1] * m[2][2] - m[0][2] * m[2][1]);
+    	adj[1][1] = (m[0][0] * m[2][2] - m[0][2] * m[2][0]);
+    	adj[1][2] = -(m[0][0] * m[2][1] - m[0][1] * m[2][0]);
+
+    	adj[2][0] = (m[0][1] * m[1][2] - m[0][2] * m[1][1]);
+    	adj[2][1] = -(m[0][0] * m[1][2] - m[0][2] * m[1][0]);
+    	adj[2][2] = (m[0][0] * m[1][1] - m[0][1] * m[1][0]);
+
+    	int[][] transpose = new int[3][3];
+    	for (int i = 0; i < 3; i++)
+      		for (int j = 0; j < 3; j++)
+        	transpose[i][j] = adj[j][i];
+
+    		return transpose;
     }
+  
+    public static String hillDecrypt(String ciphertext, int[][] keyMatrix) {
+    	int det = determinant(keyMatrix);
+    	int detInv = modInverse(det % 26, 26);
+    	if (detInv == -1)
+      	return "Key not invertible. Decryption failed.";
 
+    	int[][] adj = adjugate(keyMatrix);
+    	int[][] inv = new int[3][3];
+
+    	for (int i = 0; i < 3; i++)
+      		for (int j = 0; j < 3; j++) {
+        		inv[i][j] = (adj[i][j] * detInv) % 26;
+        		if (inv[i][j] < 0)
+          		inv[i][j] += 26;
+      		}
+
+    		ciphertext = ciphertext.toUpperCase();
+    		int[] vector = new int[3];
+    		for (int i = 0; i < 3; i++) {
+      			vector[i] = ciphertext.charAt(i) - 'A';
+   		}
+
+    		int[] result = new int[3];
+    		for (int i = 0; i < 3; i++) {
+      			result[i] = 0;
+     			 for (int j = 0; j < 3; j++) {
+        			result[i] += inv[i][j] * vector[j];
+      			 }
+      			 result[i] %= 26;
+    		}
+
+    		StringBuilder decrypted = new StringBuilder();
+    		for (int val : result) {
+      			decrypted.append((char) (val + 'A'));
+    		}
+    		return decrypted.toString();
+  }
+    
+    
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int ch;
         do{
-        	System.out.println("\n--- Cipher Menu ---\n1. Caesar Cipher\n2. Substitution Cipher\n3. Hill Cipher (3x3)\n4. Exit\nChoose option: \n");
+        	System.out.println("\n--- Cipher Menu ---\n1. Caesar Cipher\n2. Substitution Cipher\n3. Hill Cipher \n4. Exit\nChoose option: \n");
       		
       		ch = sc.nextInt();
       		sc.nextLine();
@@ -141,16 +182,28 @@ public class cipher {
         			System.out.println("Decrypted: " + monodecrypted);
         			break;
         		case 3 :
-                    System.out.print("Enter 4-letter key (A-Z): ");
-                    String hillkey = sc.nextLine().toUpperCase();
-                    int[][] keyMatrix = getKeyMatrix(hillkey);
-                    System.out.print("Enter plain text: ");
-                    String hillpt = sc.nextLine();
-                    String hillen = hillencrypt(hillpt, keyMatrix);
-                    String hillde = hilldecrypt(hillen, keyMatrix);
-                    System.out.println("Encrypted: " + hillen);
-                    System.out.println("Decrypted: " + hillde);
-        			break;
+        			System.out.print("Enter 9-letter key: ");
+          			String keyStr = sc.nextLine().toUpperCase();
+          			if (keyStr.length() != 9) {
+            				System.out.println("Key must be 9 letters.");
+            			break;
+          			}
+          			int[][] matrix = new int[3][3];
+          			for (int i = 0; i < 9; i++)
+            				matrix[i / 3][i % 3] = keyStr.charAt(i) - 'A';
+
+          			System.out.print("Enter 3-letter plaintext: ");
+          			String plain = sc.nextLine().toUpperCase();
+          			if (plain.length() != 3) {
+            			System.out.println("Plaintext must be 3 letters.");
+            			break;
+          			}
+
+          			String hillEnc = hillEncrypt(plain, matrix);
+          			String hillDec = hillDecrypt(hillEnc, matrix);
+          			System.out.println("Encrypted: " + hillEnc);
+          			System.out.println("Decrypted: " + hillDec);
+          			break;
         		case 4:
           			System.out.println("Exiting.");
           			break;
