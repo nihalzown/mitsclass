@@ -311,13 +311,6 @@ public class des {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         
-        System.out.println("DES Encryption/Decryption");
-        System.out.println("1. Encrypt");
-        System.out.println("2. Decrypt");
-        System.out.print("Choose option: ");
-        int choice = sc.nextInt();
-        sc.nextLine(); // Consume newline
-        
         System.out.print("Enter 8-character key: ");
         String key = sc.nextLine();
         
@@ -328,29 +321,28 @@ public class des {
             key += " ";
         }
         
-        if (choice == 1) {
-            System.out.print("Enter plaintext: ");
-            String plaintext = sc.nextLine();
-            
-            String encrypted = encrypt(plaintext, key);
-            System.out.println("Encrypted text: " + encrypted);
-            
-            // Show as hex for better readability
-            StringBuilder hex = new StringBuilder();
-            for (char c : encrypted.toCharArray()) {
-                hex.append(String.format("%02X", (int) c));
-            }
-            System.out.println("Encrypted (hex): " + hex.toString());
-            
-        } else if (choice == 2) {
-            System.out.print("Enter ciphertext: ");
-            String ciphertext = sc.nextLine();
-            
-            String decrypted = decrypt(ciphertext, key);
-            System.out.println("Decrypted text: " + decrypted);
-        } else {
-            System.out.println("Invalid choice!");
+        System.out.print("Enter plaintext: ");
+        String plaintext = sc.nextLine();
+        
+        // Encrypt the plaintext
+        String encrypted = encrypt(plaintext, key);
+        
+        // Decrypt the same ciphertext
+        String decrypted = decrypt(encrypted, key);
+        
+        // Display results
+        System.out.println("\n--- Results ---");
+        System.out.println("Original text: " + plaintext);
+        System.out.println("Key used: " + key);
+        System.out.println("Encrypted text: " + encrypted);
+        
+        // Show as hex for better readability
+        StringBuilder hex = new StringBuilder();
+        for (char c : encrypted.toCharArray()) {
+            hex.append(String.format("%02X", (int) c));
         }
+        System.out.println("Encrypted (hex): " + hex.toString());
+        System.out.println("Decrypted text: " + decrypted);
         
         sc.close();
     }
