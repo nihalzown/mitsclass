@@ -1,54 +1,32 @@
 import javax.crypto.Cipher;
+import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
-import javax.crypto.SecretKeyFactory;
-import javax.crypto.spec.DESKeySpec;
 import java.util.Base64;
-import java.util.Scanner;
+import java.util.Scanner; // Import the Scanner class
 
 public class des {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        try {
-            System.out.print("Enter 8-character key: ");
-            String key = sc.nextLine();
-            if (key.length() > 8) key = key.substring(0, 8);
-            while (key.length() < 8) key += " ";
+    public static void main(String[] args) throws Exception {
 
-            System.out.print("Enter plaintext: ");
-            String plaintext = sc.nextLine();
+        KeyGenerator keyGen = KeyGenerator.getInstance("DES");
+        SecretKey key = keyGen.generateKey();
 
-            String encrypted = encrypt(plaintext, key);
-            String decrypted = decrypt(encrypted, key);
+        // Use Scanner to get user input
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the message to encrypt: ");
+        String message = scanner.nextLine();
+        scanner.close(); // Close the scanner when finished
 
-            System.out.println("\n--- Results ---");
-            System.out.println("Original text: " + plaintext);
-            System.out.println("Key used: " + key);
-            System.out.println("Encrypted (Base64): " + encrypted);
-            System.out.println("Decrypted text: " + decrypted);
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
-        }
-        sc.close();
-    }
+        Cipher cipher = Cipher.getInstance("DES/ECB/PKCS5Padding");
+        cipher.init(Cipher.ENCRYPT_MODE, key);
+        byte[] encrypted = cipher.doFinal(message.getBytes("UTF-8"));
+        String encText = Base64.getEncoder().encodeToString(encrypted);
 
-    public static String encrypt(String plainText, String key) throws Exception {
-        DESKeySpec desKeySpec = new DESKeySpec(key.getBytes());
-        SecretKeyFactory keyFactory = SecretKeyFactory.getInstance("DES");
-        SecretKey secretKey = keyFactory.generateSecret(desKeySpec);
-        Cipher cipher = Cipher.getInstance("DES");
-        cipher.init(Cipher.ENCRYPT_MODE, secretKey);
-        byte[] encrypted = cipher.doFinal(plainText.getBytes());
-        return Base64.getEncoder().encodeToString(encrypted);
-    }
+        cipher.init(Cipher.DECRYPT_MODE, key);
+        byte[] decrypted = cipher.doFinal(Base64.getDecoder().decode(encText));
+        String decText = new String(decrypted, "UTF-8");
 
-    public static String decrypt(String cipherText, String key) throws Exception {
-        byte[] encryptedBytes = Base64.getDecoder().decode(cipherText);
-        DESKeySpec desKeySpec = new DESKeySpec(key.getBytes());
-        SecretKeyFactory keyFactory = SecretKeyFactory.getInstance("DES");
-        SecretKey secretKey = keyFactory.generateSecret(desKeySpec);
-        Cipher cipher = Cipher.getInstance("DES");
-        cipher.init(Cipher.DECRYPT_MODE, secretKey);
-        byte[] decrypted = cipher.doFinal(encryptedBytes);
-        return new String(decrypted);
+        System.out.println("Original : " + message);
+        System.out.println("Encrypted: " + encText);
+        System.out.println("Decrypted: " + decText);
     }
 }
