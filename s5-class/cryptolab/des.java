@@ -1,32 +1,27 @@
-import javax.crypto.Cipher;
-import javax.crypto.KeyGenerator;
-import javax.crypto.SecretKey;
-import java.util.Base64;
-import java.util.Scanner; // Import the Scanner class
+import javax.crypto.*;
+import java.util.*;
 
-public class des {
-    public static void main(String[] args) throws Exception {
+public class des{
+    public static void main(String[] args)throws Exception {
+        KeyGenerator keygen = KeyGenerator.getInstance("DES");
+        SecretKey key = keygen.generateKey();
 
-        KeyGenerator keyGen = KeyGenerator.getInstance("DES");
-        SecretKey key = keyGen.generateKey();
+        Scanner sc = new Scanner(System.in);
+        System.out.print("enter text :");
+        String msg = sc.nextLine();
+        sc.close();
 
-        // Use Scanner to get user input
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter the message to encrypt: ");
-        String message = scanner.nextLine();
-        scanner.close(); // Close the scanner when finished
+        Cipher cpr = Cipher.getInstance("DES/ECB/PKCS5Padding");
+        cpr.init(Cipher.ENCRYPT_MODE,key);
+        byte[] encrypted = cpr.doFinal(msg.getBytes("UTF-8"));
+        String enctext = Base64.getEncoder().encodeToString(encrypted);
 
-        Cipher cipher = Cipher.getInstance("DES/ECB/PKCS5Padding");
-        cipher.init(Cipher.ENCRYPT_MODE, key);
-        byte[] encrypted = cipher.doFinal(message.getBytes("UTF-8"));
-        String encText = Base64.getEncoder().encodeToString(encrypted);
+        cpr.init(Cipher.DECRYPT_MODE,key);
+        byte[] decrypted = cpr.doFinal(Base64.getDecoder().decode(enctext));
+        String dectext = new String(decrypted,"UTF-8");
 
-        cipher.init(Cipher.DECRYPT_MODE, key);
-        byte[] decrypted = cipher.doFinal(Base64.getDecoder().decode(encText));
-        String decText = new String(decrypted, "UTF-8");
-
-        System.out.println("Original : " + message);
-        System.out.println("Encrypted: " + encText);
-        System.out.println("Decrypted: " + decText);
+        System.out.println("original : "+msg);
+        System.out.println("encrypted : "+enctext);
+        System.out.println("decrypted : "+dectext);
     }
 }

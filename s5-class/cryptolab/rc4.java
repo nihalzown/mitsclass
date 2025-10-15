@@ -1,9 +1,9 @@
 import javax.crypto.*;
 import java.util.*;
 
-public class blowfish{
+public class rc4{
     public static void main(String[] args)throws Exception {
-        KeyGenerator keygen = KeyGenerator.getInstance("Blowfish");
+        KeyGenerator keygen = KeyGenerator.getInstance("RC4");
         keygen.init(128);
         SecretKey key = keygen.generateKey();
 
@@ -12,7 +12,7 @@ public class blowfish{
         String msg = sc.nextLine();
         sc.close();
 
-        Cipher cpr = Cipher.getInstance("Blowfish/ECB/PKCS5Padding");
+        Cipher cpr = Cipher.getInstance("RC4");
         cpr.init(Cipher.ENCRYPT_MODE,key);
         byte[] encrypted = cpr.doFinal(msg.getBytes("UTF-8"));
         String enctext = Base64.getEncoder().encodeToString(encrypted);
