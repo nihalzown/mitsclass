@@ -1,3 +1,7 @@
+/*a) Write a Java program to implement a secure communication mechanism where:
+- Sender and Receiver to compute secret key using Diffie Hellman and 
+sender to encrypt the message with that key using DES.*/
+
 //diffie key and des . key printed also.
 
 import java.util.*;
