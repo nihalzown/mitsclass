@@ -3,8 +3,6 @@ where each letter of the alphabet is substituted by another based on a given key
 Use the key where the letter 'A' is replaced by 'Q', 'B' by 'W', and so on. 
 Encrypt and then decrypt the phrase "PRIVATE".   */
 
-
-import java.util.*;
 public class substitution{
     private static String alfa = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     public static String encrypt(String text ,String key){
@@ -36,11 +34,8 @@ public class substitution{
         return pt.toString();
     }
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
         String key = "QWERTYUIOPASDFGHJKLZXCVBNM";
-        key.toUpperCase();
         String text = "PRIVATE";
-        text.toUpperCase();
         String monoencrypted = encrypt(text, key);
         String monodecrypted = decrypt(monoencrypted, key);
         System.out.println("Encrypted: " + monoencrypted);
