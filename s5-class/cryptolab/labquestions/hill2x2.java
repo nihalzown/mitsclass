@@ -3,86 +3,86 @@ the message "HOPE" using the key matrix [2 3; 3 5]. */
 
 public class hill2x2{
     private static int[][] keyMatrix = {{2,3},{3,5}};
-
-    public static int modInverse(int a , int m){
+    public static int modInverse(int a,int m){
         a=a%m;
-        for(int x = 1;x<m;x++){
+        for(int x=1;x<m;x++){
             if((a*x)%m==1){
                 return x;
             }
-        }return -1;
+        }
+        return -1;
     }
 
-    public static String hillencrypt(String plaintext,int[][] keyMatrix){
-        plaintext = plaintext.toUpperCase();
+    public static String hillencrypt(String plain , int[][] keyMatrix){
         StringBuilder ct = new StringBuilder();
-
-        for(int k=0; k<plaintext.length();k+=2){
+        for(int k=0;k<plain.length();k+=2){
             int[] vector = new int[2];
-            vector[0]=plaintext.charAt(k)-'A';
-            vector[1]=plaintext.charAt(k+1)-'A';
+            vector[0]=plain.charAt(k)-'A';
+            vector[1]=plain.charAt(k+1)-'A';
 
             int[] result = new int[2];
-            for(int i=0;i<2;i++){
+            for(int i =0;i<2;i++){
                 result[i]=0;
                 for(int j=0;j<2;j++){
-                    result[i] += keyMatrix[i][j]*vector[j];
+                    result[i]+=keyMatrix[i][j]*vector[j];
                 }
                 result[i]%=26;
             }
             for(int val : result){
                 ct.append((char)(val+'A'));
             }
-        }
-        return ct.toString();
+
+        }return ct.toString();
     }
-    public static String hilldecrypt(String ciphertext,int[][] keyMatrix){
+
+    public static String hilldecrypt(String cipher , int[][] keyMatrix){
         int det = (keyMatrix[0][0]*keyMatrix[1][1]-keyMatrix[0][1]*keyMatrix[1][0])%26;
-        det =((det%26)+26)%26;
-        int detInv = modInverse(det,26);
+        det = ((det%26)+26)%26;
+
+        int detinv = modInverse(det, 26);
         int[][] inv = new int[2][2];
 
         int[][] adj = new int[2][2];
-        adj[0][0] = keyMatrix[1][1];   
-        adj[0][1] = -keyMatrix[0][1];  
+        adj[0][0] = keyMatrix[1][1];
+        adj[0][1] = -keyMatrix[0][1];
         adj[1][0] = -keyMatrix[1][0];
         adj[1][1] = keyMatrix[0][0];
 
-        for(int i=0;i<2;i++){
+        for(int i=0 ; i<2;i++){
             for(int j=0;j<2;j++){
-                inv[i][j]=(adj[i][j]*detInv)%26;
+                inv[i][j]=(adj[i][j]*detinv)%26;
                 if(inv[i][j]<0){
                     inv[i][j]+=26;
                 }
             }
         }
-
-        StringBuilder dect = new StringBuilder();
-        for(int k=0; k<ciphertext.length();k+=2){
+        StringBuilder pt = new StringBuilder();
+        for(int k=0;k<cipher.length();k+=2){
             int[] vector = new int[2];
-            vector[0]=ciphertext.charAt(k)-'A';
-            vector[1]=ciphertext.charAt(k+1)-'A';
+            vector[0]=cipher.charAt(k)-'A';
+            vector[1]=cipher.charAt(k+1)-'A';
 
             int[] result = new int[2];
-            for(int i=0;i<2;i++){
+            for(int i =0;i<2;i++){
                 result[i]=0;
                 for(int j=0;j<2;j++){
-                    result[i] += inv[i][j]*vector[j];
+                    result[i]+=inv[i][j]*vector[j];
                 }
                 result[i]%=26;
             }
             for(int val : result){
-                dect.append((char)(val+'A'));
+                pt.append((char)(val+'A'));
             }
-        }
-        return dect.toString();
-    }
-    public static void main(String[] args) {
-        String message = "HOPE";
-        String encry = hillencrypt(message, keyMatrix);
-        String decry = hilldecrypt(encry, keyMatrix);
 
-        System.out.println("Encrypted : "+encry);
-        System.out.println("Decrypted : "+decry);
+        }return pt.toString();
+    }
+
+    public static void main(String[] args) {
+        String msg = "HOPE";
+        String encrypted = hillencrypt(msg, keyMatrix);
+        String decrypted = hilldecrypt(encrypted, keyMatrix);
+
+        System.out.println("encrypted : "+encrypted);
+        System.out.println("decrypted : "+decrypted);
     }
 }
