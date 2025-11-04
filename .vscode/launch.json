@@ -2,6 +2,27 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "type": "java",
+      "name": "rsa_bigint",
+      "request": "launch",
+      "mainClass": "rsa_bigint",
+      "projectName": "mitsclass_5d92fdb4"
+    },
+    {
+      "type": "java",
+      "name": "des_with_diffie",
+      "request": "launch",
+      "mainClass": "des_with_diffie",
+      "projectName": "mitsclass_5d92fdb4"
+    },
+    {
+      "type": "java",
+      "name": "md5_dsa",
+      "request": "launch",
+      "mainClass": "md5_dsa",
+      "projectName": "mitsclass_5d92fdb4"
+    },
+    {
       "name": "C/C++ Runner: Debug Session",
       "type": "cppdbg",
       "request": "launch",

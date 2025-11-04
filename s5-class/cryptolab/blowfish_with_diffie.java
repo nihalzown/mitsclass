@@ -25,7 +25,6 @@ public class blowfish_with_diffie {
             return;
         }
 
-        System.out.println("Shared Secret Key: " + kA);
         byte[] keyBytes = Arrays.copyOf(kA.toByteArray(), 16); // Using 16 bytes for Blowfish key
         SecretKey key = new SecretKeySpec(keyBytes, "Blowfish");
 
@@ -34,6 +33,8 @@ public class blowfish_with_diffie {
         sc.nextLine(); // Consume the newline
         String msg = sc.nextLine();
         sc.close();
+        System.out.println("Shared Secret Key: " + kA);
+        System.out.println("Blowfish key : "+Base64.getEncoder().encodeToString(keyBytes));
 
         Cipher cpr = Cipher.getInstance("Blowfish/ECB/PKCS5Padding");
         cpr.init(Cipher.ENCRYPT_MODE, key);
@@ -44,7 +45,6 @@ public class blowfish_with_diffie {
         byte[] decrypted = cpr.doFinal(Base64.getDecoder().decode(enctext));
         String dectext = new String(decrypted, "UTF-8");
 
-        System.out.println("Original: " + msg);
         System.out.println("Encrypted: " + enctext);
         System.out.println("Decrypted: " + dectext);
     }
