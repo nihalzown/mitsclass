@@ -1,65 +1,81 @@
-import Image from "next/image";
+import Link from "next/link";
+import { getSems } from "@/lib/lab-data"; 
+import { Terminal, Shield, ChevronRight, Cpu } from "lucide-react";
 
 export default function Home() {
+  // 1. Ask the Librarian for the list of semesters
+  const semesters = getSems(); 
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main className="min-h-screen flex flex-col items-center justify-center p-6 relative">
+      
+      {/* Decorative Green Glow in the center */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-green-500/5 rounded-full blur-[100px] pointer-events-none" />
+
+      {/* --- HERO SECTION --- */}
+      <div className="z-10 text-center max-w-3xl mb-16 space-y-6">
+        
+        {/* The "Badge" */}
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-green-900/20 border border-green-500/30 text-green-400 text-xs font-mono tracking-widest uppercase animate-pulse">
+          <span className="w-2 h-2 rounded-full bg-green-500" />
+          System Online
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+        
+        {/* Main Title */}
+        <h1 className="text-5xl md:text-7xl font-black tracking-tighter text-white">
+          MITS <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-700">CYBER</span>
+        </h1>
+        
+        <p className="text-lg text-slate-400 max-w-xl mx-auto font-mono">
+          Secure Repository for KTU Lab Records. <br />
+          Select a sector to initialize.
+        </p>
+      </div>
+
+      {/* --- SEMESTER GRID --- */}
+      <div className="z-10 grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-5xl">
+        {semesters.length === 0 ? (
+          <div className="col-span-3 text-center p-10 border border-dashed border-red-900 bg-red-900/10 text-red-500 font-mono">
+            [ERROR]: No content found in vault. Please add 'S3' folder.
+          </div>
+        ) : (
+          semesters.map((sem) => (
+            <Link 
+              key={sem} 
+              href={`/${sem}`} // This links to the next page (Stage 4, Part 2)
+              className="group relative p-8 bg-black/40 backdrop-blur-md border border-slate-800 rounded-xl hover:border-green-500/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(34,197,94,0.1)]"
+            >
+              <div className="flex items-start justify-between mb-8">
+                <div className="p-3 bg-slate-900 rounded-lg group-hover:bg-green-500/10 group-hover:text-green-400 transition-colors">
+                  <Shield className="w-6 h-6" />
+                </div>
+                <span className="text-xs font-bold text-slate-600 uppercase tracking-widest group-hover:text-green-500 transition-colors font-mono">
+                  [DIR]
+                </span>
+              </div>
+
+              <div>
+                <h2 className="text-3xl font-bold text-white mb-2 group-hover:text-green-400 transition-colors">
+                  {sem}
+                </h2>
+                <p className="text-slate-500 text-sm mb-6 font-mono">
+                  /root/{sem.toLowerCase()}
+                </p>
+                
+                <div className="flex items-center text-sm font-bold text-slate-400 group-hover:text-green-400 transition-colors">
+                  ACCESS <ChevronRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                </div>
+              </div>
+            </Link>
+          ))
+        )}
+      </div>
+
+      {/* Footer */}
+      <div className="absolute bottom-6 text-slate-600 text-xs font-mono flex items-center gap-2">
+        <Cpu className="w-3 h-3" />
+        <span>ENCRYPTED CONNECTION // VER 1.0</span>
+      </div>
+    </main>
   );
 }
