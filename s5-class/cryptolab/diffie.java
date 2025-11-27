@@ -1,3 +1,5 @@
+/*Implement a Java program where two parties use Diffie-Hellman to compute a shared secret key. 
+Print the shared key from both parties to verify correctness. */
 import java.util.*;
 import java.math.BigInteger;
 public class diffie {

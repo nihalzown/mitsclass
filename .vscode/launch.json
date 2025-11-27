@@ -3,6 +3,20 @@
   "configurations": [
     {
       "type": "java",
+      "name": "caesar",
+      "request": "launch",
+      "mainClass": "labquestions.caesar",
+      "projectName": "mitsclass_5d92fdb4"
+    },
+    {
+      "type": "java",
+      "name": "hill2x2",
+      "request": "launch",
+      "mainClass": "labquestions.hill2x2",
+      "projectName": "mitsclass_5d92fdb4"
+    },
+    {
+      "type": "java",
       "name": "rsa_bigint",
       "request": "launch",
       "mainClass": "rsa_bigint",
