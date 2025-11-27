@@ -1,0 +1,171 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "traffic",
+      "request": "launch",
+      "mainClass": "traffic",
+      "projectName": "s3-class_5c18c834"
+    },
+    {
+      "type": "java",
+      "name": "Calcu",
+      "request": "launch",
+      "mainClass": "Calcu",
+      "projectName": "s3-class_5c18c834"
+    },
+    {
+      "type": "java",
+      "name": "BankTransaction",
+      "request": "launch",
+      "mainClass": "BankTransaction",
+      "projectName": "s3-class_5c18c834"
+    },
+    {
+      "type": "java",
+      "name": "syncro",
+      "request": "launch",
+      "mainClass": "syncro",
+      "projectName": "s3-class_5c18c834"
+    },
+    {
+      "type": "java",
+      "name": "multithread2",
+      "request": "launch",
+      "mainClass": "multithread2",
+      "projectName": "s3-class_5c18c834"
+    },
+    {
+      "type": "java",
+      "name": "randomthread",
+      "request": "launch",
+      "mainClass": "randomthread",
+      "projectName": "s3-class_5c18c834"
+    },
+    {
+      "type": "java",
+      "name": "fileread",
+      "request": "launch",
+      "mainClass": "fileread",
+      "projectName": "s3-class_5c18c834"
+    },
+    {
+      "type": "java",
+      "name": "filewriter",
+      "request": "launch",
+      "mainClass": "filewriter",
+      "projectName": "s3-class_5c18c834"
+    },
+    {
+      "type": "java",
+      "name": "stringtoken",
+      "request": "launch",
+      "mainClass": "stringtoken",
+      "projectName": "s3-class_5c18c834"
+    },
+    {
+      "type": "java",
+      "name": "odd",
+      "request": "launch",
+      "mainClass": "odd",
+      "projectName": "s3-class_5c18c834"
+    },
+    {
+      "type": "java",
+      "name": "trycatch",
+      "request": "launch",
+      "mainClass": "trycatch",
+      "projectName": "s3-class_5c18c834"
+    },
+    {
+      "type": "java",
+      "name": "TryCatchExample",
+      "request": "launch",
+      "mainClass": "TryCatchExample",
+      "projectName": "s3-class_5c18c834"
+    },
+    {
+      "type": "java",
+      "name": "demo3",
+      "request": "launch",
+      "mainClass": "demo3",
+      "projectName": "s3-class_5c18c834"
+    },
+    {
+      "type": "java",
+      "name": "exeption",
+      "request": "launch",
+      "mainClass": "exeption",
+      "projectName": "s3-class_5c18c834"
+    },
+    {
+      "type": "java",
+      "name": "MultipleInheritance",
+      "request": "launch",
+      "mainClass": "MultipleInheritance",
+      "projectName": "s3-class_5c18c834"
+    },
+    {
+      "type": "java",
+      "name": "inheritance",
+      "request": "launch",
+      "mainClass": "inheritance",
+      "projectName": "s3-class_5c18c834"
+    },
+    {
+      "type": "java",
+      "name": "Book",
+      "request": "launch",
+      "mainClass": "Book",
+      "projectName": "s3-class_5c18c834"
+    },
+    {
+      "type": "java",
+      "name": "Train",
+      "request": "launch",
+      "mainClass": "Train",
+      "projectName": "s3-class_5c18c834"
+    },
+    {
+      "type": "java",
+      "name": "shape",
+      "request": "launch",
+      "mainClass": "shape",
+      "projectName": "s3-class_5c18c834"
+    },
+    {
+      "type": "java",
+      "name": "NewRelease",
+      "request": "launch",
+      "mainClass": "NewRelease",
+      "projectName": "s3-class_5c18c834"
+    },
+    {
+      "type": "java",
+      "name": "object",
+      "request": "launch",
+      "mainClass": "object",
+      "projectName": "s3-class_5c18c834"
+    },
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "cppdbg",
+      "request": "launch",
+      "args": [],
+      "stopAtEntry": false,
+      "externalConsole": false,
+      "cwd": "/home/nihalzown/Documents/GitHub/s3-class/c prgms",
+      "program": "/home/nihalzown/Documents/GitHub/s3-class/c prgms/build/Debug/outDebug",
+      "MIMode": "gdb",
+      "miDebuggerPath": "gdb",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ]
+    }
+  ]
+}
