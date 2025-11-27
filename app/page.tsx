@@ -1,27 +1,22 @@
 import Link from "next/link";
 import { getSems } from "@/lib/lab-data"; 
-import { Terminal, Shield, ChevronRight, Cpu } from "lucide-react";
+import { Terminal, Shield, ChevronRight, Cpu, Github } from "lucide-react";
 
 export default function Home() {
-  // 1. Ask the Librarian for the list of semesters
   const semesters = getSems(); 
 
   return (
     <main className="min-h-screen flex flex-col items-center justify-center p-6 relative">
       
-      {/* Decorative Green Glow in the center */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-green-500/5 rounded-full blur-[100px] pointer-events-none" />
 
-      {/* --- HERO SECTION --- */}
       <div className="z-10 text-center max-w-3xl mb-16 space-y-6">
         
-        {/* The "Badge" */}
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-green-900/20 border border-green-500/30 text-green-400 text-xs font-mono tracking-widest uppercase animate-pulse">
           <span className="w-2 h-2 rounded-full bg-green-500" />
           System Online
         </div>
         
-        {/* Main Title */}
         <h1 className="text-5xl md:text-7xl font-black tracking-tighter text-white">
           MITS <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-700">CYBER</span>
         </h1>
@@ -32,7 +27,6 @@ export default function Home() {
         </p>
       </div>
 
-      {/* --- SEMESTER GRID --- */}
       <div className="z-10 grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-5xl">
         {semesters.length === 0 ? (
           <div className="col-span-3 text-center p-10 border border-dashed border-red-900 bg-red-900/10 text-red-500 font-mono">
@@ -42,7 +36,7 @@ export default function Home() {
           semesters.map((sem) => (
             <Link 
               key={sem} 
-              href={`/${sem}`} // This links to the next page (Stage 4, Part 2)
+              href={`/${sem}`} 
               className="group relative p-8 bg-black/40 backdrop-blur-md border border-slate-800 rounded-xl hover:border-green-500/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(34,197,94,0.1)]"
             >
               <div className="flex items-start justify-between mb-8">
@@ -72,10 +66,21 @@ export default function Home() {
       </div>
 
       {/* Footer */}
-      <div className="absolute bottom-6 text-slate-600 text-xs font-mono flex items-center gap-2">
-        <Cpu className="w-3 h-3" />
-        <span>ENCRYPTED CONNECTION // VER 1.0</span>
-      </div>
+      <Link 
+        href="https://github.com/nihalzown" 
+        target="_blank"
+        className="absolute bottom-6 flex items-center gap-3 px-4 py-2 rounded-full border border-transparent hover:border-slate-800 hover:bg-slate-900/50 transition-all duration-300 group"
+      >
+        <div className="flex items-center gap-2 text-slate-600 text-xs font-mono group-hover:text-green-500 transition-colors">
+          <Cpu className="w-3 h-3" />
+          <span>SYSTEM VER 1.0</span>
+        </div>
+        <div className="w-px h-3 bg-slate-800" />
+        <div className="flex items-center gap-2 text-slate-500 text-xs font-bold tracking-widest group-hover:text-white transition-colors">
+          <span>CREATED BY NIHALZOWN</span>
+          <Github className="w-3 h-3 text-slate-600 group-hover:text-white" />
+        </div>
+      </Link>
     </main>
   );
 }
