@@ -1,3 +1,4 @@
+// Aim: Program to perform StringTokenizer operations (Sum of Integers).
 import java.util.*;
 
 public class exp6_1 {

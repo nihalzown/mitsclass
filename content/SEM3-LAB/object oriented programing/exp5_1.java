@@ -1,3 +1,4 @@
+// Aim: Program to perform Exception Handling operations (Arithmetic and ArrayIndexOutOfBoundsException).
 public class exp5_1 {
     public static void main(String[] args) {
         try {

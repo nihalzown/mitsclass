@@ -1,3 +1,4 @@
+// Aim: Program to perform Array operations (Remove Duplicate).
 import java.util.*;
 public class rmduplicate {
     public static void main(String[] args) {

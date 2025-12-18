@@ -1,3 +1,4 @@
+// Aim: Program to perform Inheritance operations (Employee details).
 import java.util.Scanner;
 class Employee{
 	String name, dept;

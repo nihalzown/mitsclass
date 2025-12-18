@@ -1,3 +1,4 @@
+// Aim: Program to perform Exception Handling.
 public class demo3{
     public static void main(String[] args){
         try{

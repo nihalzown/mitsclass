@@ -1,3 +1,4 @@
+// Aim: Program to perform File Handling operations (File Writing).
 import java.io.FileWriter;
 import java.util.Scanner;
 public class exp6_3{

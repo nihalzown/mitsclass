@@ -1,3 +1,4 @@
+// Aim: Program to perform Abstract Class operations (Author and Book).
 class Author {
     private String name;
     private String email;

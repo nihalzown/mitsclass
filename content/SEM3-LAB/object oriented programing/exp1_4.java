@@ -1,3 +1,4 @@
+// Aim: Program to perform Matrix Addition.
 import java.util.Scanner;
 public class exp1_4 {
     public static void main(String[] args) {

@@ -1,3 +1,4 @@
+// Aim: Program to perform Exception Handling operations (Odd Number Exception).
 import java.util.Scanner;
 
 class OddNumberException extends Exception {

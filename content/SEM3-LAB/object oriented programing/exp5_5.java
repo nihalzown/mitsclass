@@ -1,3 +1,4 @@
+// Aim: Program to perform Exception Handling operations (Interface).
 interface Account {
     void deposit(double amt);
     void withdraw(double amt);

@@ -1,3 +1,4 @@
+// Aim: Program to perform Multithreading operations (Bank Account).
 import java.util.Scanner;
 
 class Account {

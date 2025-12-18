@@ -1,3 +1,4 @@
+// Aim: Program to perform Object Passing.
 class person {
     String name;
     

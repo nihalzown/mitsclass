@@ -1,3 +1,4 @@
+// Aim: Program to perform Abstract Class operations (Train Compartment).
 import java.util.Scanner;
 abstract class Compartment {
     protected int availableSeats;

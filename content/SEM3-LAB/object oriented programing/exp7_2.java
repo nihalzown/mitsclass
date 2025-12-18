@@ -1,3 +1,4 @@
+// Aim: Program to perform Multithreading operations (Even and Odd Number).
 import java.util.Random;
 class RandomNumberGenerator extends Thread{
     public void run(){

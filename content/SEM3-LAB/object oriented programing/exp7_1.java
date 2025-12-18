@@ -1,3 +1,4 @@
+// Aim: Program to perform Multithreading operations (Random Number Generator).
 import java.util.Random;
 class RandomNumberGenerator extends Thread{
     public void run(){

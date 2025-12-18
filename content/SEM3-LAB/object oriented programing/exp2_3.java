@@ -1,4 +1,5 @@
-  class exp2_3{
+// Aim: Program to perform constructor operations (Box Volume).
+class exp2_3{
     double width, height, depth;
 
     public exp2_3(){

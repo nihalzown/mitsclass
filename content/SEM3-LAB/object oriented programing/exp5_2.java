@@ -1,3 +1,4 @@
+// Aim: Program to perform Exception Handling operations (ClassNotFoundException and IllegalArgumentException).
 public class exp5_2 {
 
     public static void main(String[] args) {

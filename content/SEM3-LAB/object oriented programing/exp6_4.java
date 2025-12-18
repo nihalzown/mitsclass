@@ -1,3 +1,4 @@
+// Aim: Program to perform File Handling operations (File Copying).
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.Scanner;

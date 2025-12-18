@@ -1,3 +1,4 @@
+// Aim: Program to perform Array of Objects.
 import java.util.*;
 class student{
     String name;

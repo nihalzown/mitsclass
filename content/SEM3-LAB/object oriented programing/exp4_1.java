@@ -1,3 +1,4 @@
+// Aim: Program to perform Abstract Class operations (Movie Ticket Booking).
 import java.util.*;
 
 abstract class tickets{

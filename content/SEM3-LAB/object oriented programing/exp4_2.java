@@ -1,3 +1,4 @@
+// Aim: Program to perform Abstract Class operations (Number of Sides).
 abstract class Shape {
     abstract void numberOfSides();
 }

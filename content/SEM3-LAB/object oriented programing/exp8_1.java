@@ -1,3 +1,4 @@
+// Aim: Program to perform GUI operations (Calculator).
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;

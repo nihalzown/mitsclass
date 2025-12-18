@@ -1,3 +1,4 @@
+// Aim: Program to perform String Reversal.
 import java.util.*;
 public class exp1_6
 {

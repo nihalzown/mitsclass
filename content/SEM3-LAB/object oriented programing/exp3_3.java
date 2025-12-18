@@ -1,3 +1,4 @@
+// Aim: Program to perform Inheritance operations (Student details).
 import java.util.*;
 
 class Student {

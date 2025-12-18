@@ -1,3 +1,4 @@
+// Aim: Program to perform String Palindrome Check.
 import java.util.*;
 public class exp1_8 {
     public static void main(String[] args) {

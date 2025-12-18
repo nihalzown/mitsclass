@@ -1,3 +1,4 @@
+// Aim: Program to perform Array operations (Reverse Array).
 import java.util.*;
 public class rev_array {
     public static void main(String[] args) {

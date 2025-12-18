@@ -1,3 +1,4 @@
+// Aim: Program to perform Amstrong Number.
 import java.util.Scanner;
 class amstrong
 {

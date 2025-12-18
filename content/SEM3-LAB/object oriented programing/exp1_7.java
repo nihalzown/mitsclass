@@ -1,3 +1,4 @@
+// Aim: Program to perform String Character Count.
 import java.util.*;
 public class exp1_7
 {
