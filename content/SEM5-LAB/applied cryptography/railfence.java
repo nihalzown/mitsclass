@@ -1,3 +1,4 @@
+// Aim: Program to perform Rail fence cipher (Rail fence Cipher).
 public class railfence {
     public static String encrypt(String text, int key) {
         if (key <= 1) return text;

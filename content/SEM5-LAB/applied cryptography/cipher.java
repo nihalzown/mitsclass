@@ -1,3 +1,4 @@
+// Aim: Program to perform Substitution cipher (Substitution Cipher).
 import java.util.*;
 import java.util.Scanner;
 

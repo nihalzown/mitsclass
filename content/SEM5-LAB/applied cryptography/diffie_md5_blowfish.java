@@ -1,7 +1,4 @@
-/*Write a Java program to implement a secure communication mechanism where:
-- sender encrypts the plaintext message using Blowfish  with Diffie Hellman key
-- computes the MD5 hash of the original message to ensure integrity. */
-
+// Aim: Program to perform Blowfish encryption with Diffie-Hellman key exchange and MD5 hash (Blowfish with Diffie-Hellman Key Exchange and MD5 Hash).
 import javax.crypto.*;
 import javax.crypto.spec.*;
 import java.util.*;

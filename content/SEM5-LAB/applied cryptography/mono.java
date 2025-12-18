@@ -1,3 +1,4 @@
+// Aim: Program to perform Monoalphabetic cipher (Monoalphabetic Cipher).
 import java.util.*;
 import java.util.Scanner;
 public class mono {

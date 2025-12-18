@@ -1,8 +1,4 @@
-/*Write a Java program to implement a secure communication mechanism where:
-- sender computes the MD5 hash of the original message given by user.
-- Signs the above generated hash using DSA*/
-
-//program 1 md5 with dsa with key print cheyyal.
+// Aim: Program to perform MD5 hash with DSA (MD5 Hash with DSA).
 
 
 import java.util.*;

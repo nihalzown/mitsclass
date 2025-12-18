@@ -1,3 +1,4 @@
+// Aim: Program to perform RC4 encryption (RC4 Encryption).
 import javax.crypto.*;
 import java.util.*;
 

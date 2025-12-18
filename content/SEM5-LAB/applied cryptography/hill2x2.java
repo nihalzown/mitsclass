@@ -1,6 +1,4 @@
-/*Write a Java program to implement the 2x2 Hill cipher to encrypt & decrypt 
-the message "HOPE" using the key matrix [2 3; 3 5]. */
-
+// Aim: Program to perform Hill cipher (Hill Cipher).
 public class hill2x2{
     private static int[][] keyMatrix = {{2,3},{3,5}};
     public static int modInverse(int a,int m){

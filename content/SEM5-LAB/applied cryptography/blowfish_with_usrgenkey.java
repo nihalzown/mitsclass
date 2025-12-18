@@ -1,7 +1,4 @@
-/*a) Implement a Java program that scrambles the text 
-"INFORMATION" using a Blowfish encryption algorithm with 
-a user-generated key and restores the original message.*/
-
+// Aim: Program to perform Blowfish encryption with user-generated key (Blowfish with User-Generated Key).
 import javax.crypto.spec.*;
 import javax.crypto.*;
 import java.util.*;

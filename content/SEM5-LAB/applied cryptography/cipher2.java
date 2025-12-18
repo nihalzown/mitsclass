@@ -1,3 +1,4 @@
+// Aim: Program to perform Playfair cipher (Playfair Cipher).
 import java.util.*;
 
 public class cipher2 {

@@ -1,8 +1,4 @@
-/*a) Write a Java program that implements a simple letter-mapping cipher, 
-where each letter of the alphabet is substituted by another based on a given key. 
-Use the key where the letter 'A' is replaced by 'Q', 'B' by 'W', and so on. 
-Encrypt and then decrypt the phrase "PRIVATE".   */
-
+// Aim: Program to perform Substitution cipher (Substitution Cipher).
 public class substitution{
     private static String alfa = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     public static String encrypt(String text ,String key){

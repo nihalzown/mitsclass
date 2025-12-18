@@ -1,3 +1,4 @@
+// Aim: Program to perform Digital Signature Standard (Digital Signature Standard).
 import java.security.*;
 import java.util.*;
 public class ds {

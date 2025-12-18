@@ -1,3 +1,4 @@
+// Aim: Program to perform DES encryption (DES Encryption).
 import javax.crypto.*;
 import java.util.*;
 

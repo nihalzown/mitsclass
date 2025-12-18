@@ -1,3 +1,4 @@
+// Aim: Program to perform RC4 encryption with Diffie-Hellman key exchange (RC4 with Diffie-Hellman Key Exchange).
 import javax.crypto.*;
 import javax.crypto.spec.SecretKeySpec;
 import java.util.*;

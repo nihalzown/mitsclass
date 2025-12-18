@@ -1,6 +1,4 @@
-/*Create a Caesar cipher in Java with a shifting 
-key of 3 to encrypt and 
-decrypt the message "CRYPTOGRAPHY ".  */
+// Aim: Program to perform Caesar cipher (Caesar Cipher).
 public class caesar {
     public static String encrypt(String text,int shift){
         StringBuilder st = new StringBuilder();

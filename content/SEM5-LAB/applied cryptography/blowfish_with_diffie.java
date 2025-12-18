@@ -1,3 +1,4 @@
+// Aim: Program to perform Blowfish encryption with Diffie-Hellman key exchange (Blowfish with Diffie-Hellman Key Exchange).
 import javax.crypto.*;
 import javax.crypto.spec.SecretKeySpec;
 import java.util.*;
@@ -22,6 +23,7 @@ public class blowfish_with_diffie {
 
         if (!kA.equals(kB)) {
             System.out.println("Error: Keys do not match!");
+            sc.close();
             return;
         }
 
@@ -34,7 +36,7 @@ public class blowfish_with_diffie {
         String msg = sc.nextLine();
         sc.close();
         System.out.println("Shared Secret Key: " + kA);
-        System.out.println("Blowfish key : "+Base64.getEncoder().encodeToString(keyBytes));
+        System.out.println("Blowfish key : " + Base64.getEncoder().encodeToString(keyBytes));
 
         Cipher cpr = Cipher.getInstance("Blowfish/ECB/PKCS5Padding");
         cpr.init(Cipher.ENCRYPT_MODE, key);

@@ -1,3 +1,4 @@
+// Aim: Program to perform MD5 hash (MD5 Hash).
 import java.util.*;
 import java.security.*;
 public class md5 {
