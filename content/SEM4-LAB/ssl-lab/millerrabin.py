@@ -1,3 +1,4 @@
+# Aim: Program to perform Miller-Rabin primality test (Miller-Rabin Primality Test).
 import random
 
 def miller_rabin(n,k=10):

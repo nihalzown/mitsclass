@@ -1,3 +1,4 @@
+# Aim: Program to perform keylogger detection (Keylogger Detection).
 import os
 def check_key():
     try:

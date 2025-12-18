@@ -1,3 +1,4 @@
+# Aim: Program to perform prime number check (Prime Number Check).
 num = int(input("Enter a number: "))
 if num < 2:
     print(num, "is not a prime number")

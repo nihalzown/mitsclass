@@ -1,4 +1,5 @@
 #!/bin/bash
+# Aim: Program to perform line, word, and character count (Line, Word, and Character Count).
 lines=0
 words=0
 chars=0

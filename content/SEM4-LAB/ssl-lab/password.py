@@ -1,3 +1,4 @@
+# Aim: Program to perform password strength check (Password Strength Check).
 def checkpass(password):
     rate=0
     length=len(password)

@@ -1,4 +1,5 @@
 #!/bin/bash
+# Aim: Program to perform file listing (File Listing).
 count=1
 for file in *; do
     if [ -f $file ]; then

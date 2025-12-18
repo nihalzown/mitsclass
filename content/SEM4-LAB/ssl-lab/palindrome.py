@@ -1,3 +1,4 @@
+# Aim: Program to perform palindrome check (Palindrome Check).
 num = int(input("Enter a number: "))
 string = str(num)
 if string == string[::-1]:

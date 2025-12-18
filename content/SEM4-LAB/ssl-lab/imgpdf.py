@@ -1,3 +1,4 @@
+# Aim: Program to perform image to PDF conversion (Image to PDF Conversion).
 import os
 dir_path = "/home/nihalzown/Downloads"
 extentions =( ".jpg", ".jpeg", ".png", ".pdf")

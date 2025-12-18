@@ -1,3 +1,4 @@
+# Aim: Program to perform sorting (Sorting).
 def sort_list(lst):
     for i in range(len(lst)-1):
         for j in range(i+1, len(lst)):

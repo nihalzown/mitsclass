@@ -1,4 +1,5 @@
 #!/bin/bash
+# Aim: Program to perform file integrity check (File Integrity Check).
 echo 'To test the integrity of the file in a directory at '$PWD
 read -p "Enter the name of the file : " file
 calculate_hash() {

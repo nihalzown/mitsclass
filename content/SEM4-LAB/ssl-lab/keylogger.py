@@ -1,4 +1,4 @@
-# filepath: /home/nihalzown/Documents/GitHub/class/s4-class/ssl-lab/keylogger.py
+# Aim: Program to perform keylogger detection (Keylogger Detection).
 from pynput.keyboard import Key, Listener
 
 def on_press(key):

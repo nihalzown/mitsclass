@@ -1,3 +1,4 @@
+# Aim: Program to perform random number generation (Random Number Generation).
 seed = 1234
 a=1664525
 c=1013904223

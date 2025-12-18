@@ -1,3 +1,4 @@
+# Aim: Program to perform factorial calculation (Factorial Calculation).
 def factorial(n):
     if n == 0:
         return 1
