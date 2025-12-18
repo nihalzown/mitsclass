@@ -1,26 +1,26 @@
 import Link from "next/link";
-import { getSems } from "@/lib/lab-data"; 
+import { getSems } from "@/lib/lab-data";
 import { Terminal, Shield, ChevronRight, Cpu, Github } from "lucide-react";
 
 export default function Home() {
-  const semesters = getSems(); 
+  const semesters = getSems();
 
   return (
     <main className="min-h-screen flex flex-col items-center justify-center p-6 relative">
-      
+
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-green-500/5 rounded-full blur-[100px] pointer-events-none" />
 
       <div className="z-10 text-center max-w-3xl mb-16 space-y-6">
-        
+
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-green-900/20 border border-green-500/30 text-green-400 text-xs font-mono tracking-widest uppercase animate-pulse">
           <span className="w-2 h-2 rounded-full bg-green-500" />
           System Online
         </div>
-        
+
         <h1 className="text-5xl md:text-7xl font-black tracking-tighter text-white">
           MITS <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-700">CYBER</span>
         </h1>
-        
+
         <p className="text-lg text-slate-400 max-w-xl mx-auto font-mono">
           Secure Repository for KTU Lab Records. <br />
           Select a sector to initialize.
@@ -34,9 +34,9 @@ export default function Home() {
           </div>
         ) : (
           semesters.map((sem) => (
-            <Link 
-              key={sem} 
-              href={`/${sem}`} 
+            <Link
+              key={sem}
+              href={`/${sem}`}
               className="group relative p-8 bg-black/40 backdrop-blur-md border border-slate-800 rounded-xl hover:border-green-500/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(34,197,94,0.1)]"
             >
               <div className="flex items-start justify-between mb-8">
@@ -55,7 +55,7 @@ export default function Home() {
                 <p className="text-slate-500 text-sm mb-6 font-mono">
                   /root/{sem.toLowerCase()}
                 </p>
-                
+
                 <div className="flex items-center text-sm font-bold text-slate-400 group-hover:text-green-400 transition-colors">
                   ACCESS <ChevronRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
                 </div>
@@ -66,8 +66,8 @@ export default function Home() {
       </div>
 
       {/* Footer */}
-      <Link 
-        href="https://github.com/nihalzown" 
+      <Link
+        href="https://github.com/nihalzown"
         target="_blank"
         className="absolute bottom-6 flex items-center gap-3 px-4 py-2 rounded-full border border-transparent hover:border-slate-800 hover:bg-slate-900/50 transition-all duration-300 group"
       >

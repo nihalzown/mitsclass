@@ -1,20 +1,20 @@
 import Link from "next/link";
 import { getExps } from "@/lib/lab-data";
-import {FileCode, ArrowLeft, Terminal, Lock} from "lucide-react";
+import { FileCode, ArrowLeft, Terminal, Lock } from "lucide-react";
 
 interface PageProps {
-  params: Promise<{
-    semester: string;
-    subject: string;
-  }>;
+    params: Promise<{
+        semester: string;
+        subject: string;
+    }>;
 }
 
-export default async function SubjectPage({ params }: PageProps){
+export default async function SubjectPage({ params }: PageProps) {
     const { semester, subject } = await params;
     const decodedSubject = decodeURIComponent(subject);
     const experiments = getExps(semester, decodedSubject);
 
-    return(
+    return (
         <div className="min-h-screen p-6 md:p-12 font-sans text-slate-300">
             <div className="max-w-4xl mx-auto mb-12 flex items-center gap-4">
                 <Link
@@ -41,10 +41,10 @@ export default async function SubjectPage({ params }: PageProps){
                     {experiments.length === 0 ? (
                         <div className="p-4 border border-yellow-900/50 bg-yellow-900/10 text-yellow-500 font-mono text-sm">
                             [WARNING]: No files found in this directory.
-                         </div>
-                     ) : (
+                        </div>
+                    ) : (
                         experiments.map((exp) => (
-                            <div 
+                            <div
                                 key={exp.name}
                                 className="group flex items-center justify-between p-4 bg-slate-900/30 border border-slate-800 rounded-lg hover:border-green-500/50 hover:bg-slate-900/50 transition-all"
                             >
@@ -56,13 +56,13 @@ export default async function SubjectPage({ params }: PageProps){
                                 </div>}
 
                                 <div className="flex gap-3">
-                                <Link
-                                    href={`/${semester}/${subject}/${exp.name}`}
-                                    className="flex items-center gap-2 px-4 py-2 text-xs font-bold bg-green-900/10 text-green-500 border border-green-900/50 rounded hover:bg-green-500 hover:text-black hover:border-green-400 transition-all"
-                                >
-                                    <Terminal className="w-3 h-3" />
-                                    EXECUTE
-                                </Link>
+                                    <Link
+                                        href={`/${semester}/${subject}/${exp.name}`}
+                                        className="flex items-center gap-2 px-4 py-2 text-xs font-bold bg-green-900/10 text-green-500 border border-green-900/50 rounded hover:bg-green-500 hover:text-black hover:border-green-400 transition-all"
+                                    >
+                                        <Terminal className="w-3 h-3" />
+                                        EXECUTE
+                                    </Link>
                                 </div>
                             </div>
                         ))

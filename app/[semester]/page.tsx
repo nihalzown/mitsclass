@@ -1,15 +1,15 @@
 import Link from "next/link";
 import { getSubs } from "@/lib/lab-data";
-import { FolderGit2, ArrowLeft,Terminal } from "lucide-react";
+import { FolderGit2, ArrowLeft, Terminal } from "lucide-react";
 
-interface PageProps{
-    params: Promise<{semester: string}>;
+interface PageProps {
+    params: Promise<{ semester: string }>;
 }
 
-export default async function SemesterPage({params}: PageProps){
+export default async function SemesterPage({ params }: PageProps) {
     const { semester } = await params;
     const subjects = getSubs(semester);
-    return(
+    return (
         <div className="min-h-screen p-6 md:p-12 font-sans text-slate-300">
             <div className="max-w-5xl mx-auto mb-12 flex items-center gap-4">
                 <Link
@@ -29,11 +29,11 @@ export default async function SemesterPage({params}: PageProps){
                     Select a target system to decrypt.
                 </p>
                 <div className="grid gap-4">
-                    {subjects.length === 0?(
+                    {subjects.length === 0 ? (
                         <div className="p-6 border border-red-900/50 bg-red-900/10 text-red-400 rounded-lg font-mono">
                             [ERROR]: No subjects found in {semester}. Please check your content folder.
                         </div>
-                    ):(
+                    ) : (
                         subjects.map((subject) => (
                             <Link
                                 key={subject}

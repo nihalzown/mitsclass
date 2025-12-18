@@ -15,7 +15,7 @@ interface PageProps {
 
 function getLanguageFromExtension(filename: string): string {
   const ext = filename.split('.').pop()?.toLowerCase();
-  
+
   switch (ext) {
     case 'py': return 'python';
     case 'c': return 'c';
@@ -46,7 +46,7 @@ export default async function CodePage({ params }: PageProps) {
     <div className="min-h-screen bg-[#050505] text-slate-300 font-sans">
       <div className="sticky top-0 z-50 flex items-center justify-between px-6 py-4 bg-[#0a0a0a]/80 backdrop-blur-md border-b border-slate-800">
         <div className="flex items-center gap-4">
-          <Link 
+          <Link
             href={`/${semester}/${subject}`}
             className="p-2 hover:bg-slate-800 rounded-full transition-colors text-slate-400 hover:text-white"
           >
@@ -85,12 +85,12 @@ export default async function CodePage({ params }: PageProps) {
           <SyntaxHighlighter
             language={language}
             style={vscDarkPlus}
-            customStyle={{ 
-              margin: 0, 
-              padding: '1.5rem', 
-              fontSize: '14px', 
+            customStyle={{
+              margin: 0,
+              padding: '1.5rem',
+              fontSize: '14px',
               lineHeight: '1.6',
-              background: '#0d0d0d' 
+              background: '#0d0d0d'
             }}
             showLineNumbers={true}
             wrapLines={true}
