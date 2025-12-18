@@ -1,3 +1,4 @@
+// Aim: Program to perform Double Ended Queue operations (Insertion, Deletion).
 #include<stdio.h>
 int a[20],size,f,r;
 void push(int item){

@@ -1,3 +1,4 @@
+// Aim: Program to perform Quick Sort on an array.
 #include <stdio.h>
 
 void printArray(int *A, int n)

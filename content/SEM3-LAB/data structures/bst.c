@@ -1,3 +1,4 @@
+// Aim: Program to perform Binary Search Tree (BST) operations (Insertion, Deletion).
 #include<stdio.h>
 #include<stdlib.h>
 

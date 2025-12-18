@@ -1,3 +1,4 @@
+// Aim: Program to perform Heap Sort on an array.
 #include <stdio.h>
 
 void swap(int* a, int* b){

@@ -1,3 +1,4 @@
+// Aim: Program to perform Menu Driven operations on stack (Push, Pop, Display, Status).
 #include<stdio.h>
 int a[100],size,top;
 void push(){

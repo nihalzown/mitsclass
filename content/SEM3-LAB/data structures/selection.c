@@ -1,3 +1,4 @@
+// Aim: Program to perform Selection Sort on an array.
 #include <stdio.h>
 
 void selectionSort(int arr[], int n) {

@@ -1,3 +1,4 @@
+// Aim: Program to perform Menu Driven operations on matrices (Addition, Multiplication, Transpose).
 #include<stdio.h>
 void main(){
 	int a[30][30],b[30][30],sum[30][30],pro[30][30],trans[30][30],r1,c1,r2,c2,i,j,k,ch=0,x;

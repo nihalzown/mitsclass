@@ -1,3 +1,4 @@
+// Aim: Program to perform Infix to Postfix conversion.
 #include<stdio.h>
 #include<stdlib.h>
 #include<ctype.h>

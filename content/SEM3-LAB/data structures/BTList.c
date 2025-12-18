@@ -1,3 +1,4 @@
+// Aim: Program to perform Binary Tree operations (Linked representation).
 #include <stdio.h>
 #include <stdlib.h>
 

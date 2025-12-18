@@ -1,3 +1,4 @@
+// Aim: Program to perform Sparse Matrix Addition.
 #include<stdio.h>
 
 void display(int x[10][3]){

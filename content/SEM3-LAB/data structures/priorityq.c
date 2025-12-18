@@ -1,3 +1,4 @@
+// Aim: Program to perform Priority Queue operations (Insertion, Deletion).
 #include <stdio.h>
 
 int s, f, r;

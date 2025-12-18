@@ -1,3 +1,4 @@
+// Aim: Program to perform Circular Queue operations (Insertion, Deletion).
 #include<stdio.h>
 int a[20],s,f,r;
 void enqueue(int item){

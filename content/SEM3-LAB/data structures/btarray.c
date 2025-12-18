@@ -1,3 +1,4 @@
+// Aim: Program to perform Binary Tree operations (Array representation).
 #include <stdio.h>
 #include <stdlib.h>
 int a[15], i, item, key, ch, loc;

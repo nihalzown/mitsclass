@@ -1,3 +1,4 @@
+// Aim: Program to perform Sparse Matrix Transpose.
 #include<stdio.h>
 int s[10][10],t[10][10];
 int read(int a[10][10],int m,int n){

@@ -1,3 +1,4 @@
+// Aim: Program to perform Merge Sort on an array.
 #include <stdio.h>
 int B[10];
 void printArray(int *A, int n)

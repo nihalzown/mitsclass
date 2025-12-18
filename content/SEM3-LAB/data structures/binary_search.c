@@ -1,3 +1,4 @@
+// Aim: Program to perform Binary Search on an array.
 #include<stdio.h>
 void main(){
 	int a[30],n,s,i,m,l,h,c=0;

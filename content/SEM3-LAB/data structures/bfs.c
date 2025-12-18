@@ -1,3 +1,4 @@
+// Aim: Program to perform Breadth First Search (BFS) on a graph.
 #include <stdio.h>
 #include <stdlib.h>
 

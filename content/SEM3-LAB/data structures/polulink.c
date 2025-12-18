@@ -1,4 +1,4 @@
-//Polynomial multiplication
+// Aim: Program to perform Polynomial Multiplication using Linked List.
 #include <stdio.h>
 #include <stdlib.h>
 struct node{

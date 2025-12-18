@@ -1,3 +1,4 @@
+// Aim: Program to perform Depth First Search (DFS) on a graph.
 #include <stdio.h>
 #include <stdlib.h>
 

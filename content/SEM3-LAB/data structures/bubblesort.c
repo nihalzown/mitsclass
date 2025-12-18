@@ -1,3 +1,4 @@
+// Aim: Program to perform Bubble Sort on an array.
 #include<stdio.h>
 void main(){
 	int a[30],n,s,i,j,temp;

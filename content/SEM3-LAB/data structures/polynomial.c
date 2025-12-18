@@ -1,3 +1,4 @@
+// Aim: Program to perform Polynomial operations (Addition, Multiplication).
 #include<stdio.h>
 struct poly{
     int coeff;

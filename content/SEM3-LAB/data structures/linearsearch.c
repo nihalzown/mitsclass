@@ -1,3 +1,4 @@
+// Aim: Program to perform Linear Search on an array.
 #include<stdio.h>
 void main(){
 	int a[30],n,s,i,c=0;

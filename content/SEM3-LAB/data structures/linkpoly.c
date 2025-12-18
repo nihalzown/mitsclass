@@ -1,3 +1,4 @@
+// Aim: Program to perform Linked List operations (Polynomial operations).
 #include<stdio.h>
 #include<stdlib.h>
 struct node

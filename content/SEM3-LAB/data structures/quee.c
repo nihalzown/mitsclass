@@ -1,3 +1,4 @@
+// Aim: Program to perform Queue operations (Insertion, Deletion).
 #include<stdio.h>
 int a[20],size,front,rear;
 void insert(int item){
