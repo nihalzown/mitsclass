@@ -1,3 +1,4 @@
+// Aim: Program to perform Memory Management operations (Memory Management).
 #include<stdio.h>
 #include<stdlib.h>
 

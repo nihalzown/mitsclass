@@ -1,3 +1,4 @@
+// Aim: Program to perform Bankers Algorithm operations (Bankers Algorithm).
 #include<stdio.h>
 #define MAX 10
 

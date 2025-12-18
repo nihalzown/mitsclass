@@ -1,3 +1,4 @@
+// Aim: Program to perform Disk Scheduling operations (Disk Scheduling).
 #include<stdio.h>
 #include<stdlib.h>
 

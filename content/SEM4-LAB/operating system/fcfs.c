@@ -1,3 +1,4 @@
+// Aim: Program to perform FCFS operations (FCFS).
 #include<stdio.h>
 #include<stdlib.h>
 

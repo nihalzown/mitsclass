@@ -1,3 +1,4 @@
+// Aim: Program to perform Round Robin operations (Round Robin).
 #include<stdio.h>
 
 void findwt(int processes[], int n, int bt[], int wt[], int quantum) {

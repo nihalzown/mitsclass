@@ -1,3 +1,4 @@
+// Aim: Program to perform Priority operations (Priority).
 #include<stdio.h>
 
 struct process {

@@ -1,3 +1,4 @@
+// Aim: Program to perform SJF operations (SJF).
 #include<stdio.h>
 
 void findwt(int n, int bt[], int wt[]) {
