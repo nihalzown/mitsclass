@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { getSems } from "@/lib/lab-data";
-import { Terminal, Shield, ChevronRight, Cpu, Github } from "lucide-react";
+import { Terminal, Shield, ChevronRight, Cpu, Github, Instagram } from "lucide-react";
 import InlineSearch from "@/components/Inlinesearch";
 
 export default function Home() {
@@ -12,8 +12,6 @@ export default function Home() {
       {/* Background Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-green-500/5 rounded-full blur-[100px] pointer-events-none" />
 
-      {/* --- FIX IS HERE --- */}
-      {/* 1. Changed 'z-10' to 'relative z-50' so this section floats ABOVE the cards below */}
       <div className="relative z-50 text-center max-w-3xl mb-16 space-y-6 w-full">
 
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-green-900/20 border border-green-500/30 text-green-400 text-xs font-mono tracking-widest uppercase animate-pulse">
@@ -22,7 +20,7 @@ export default function Home() {
         </div>
 
         <h1 className="text-5xl md:text-7xl font-black tracking-tighter text-white">
-          MITS <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-700">CYBER</span>
+          CYBER <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-700">VAULT</span>
         </h1>
 
         <p className="text-lg text-slate-400 max-w-xl mx-auto font-mono">
@@ -33,10 +31,9 @@ export default function Home() {
         <div className="mt-8 w-full max-w-lg mx-auto text-left">
           <InlineSearch />
         </div>
-        
+
       </div>
 
-      {/* Grid Section (Stays at z-10, so it sits BEHIND the search dropdown now) */}
       <div className="z-10 grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-5xl">
         {semesters.length === 0 ? (
           <div className="col-span-3 text-center p-10 border border-dashed border-red-900 bg-red-900/10 text-red-500 font-mono">
@@ -76,21 +73,32 @@ export default function Home() {
       </div>
 
       {/* Footer */}
-      <Link
-        href="https://github.com/nihalzown"
-        target="_blank"
-        className="absolute bottom-6 flex items-center gap-3 px-4 py-2 rounded-full border border-transparent hover:border-slate-800 hover:bg-slate-900/50 transition-all duration-300 group"
-      >
-        <div className="flex items-center gap-2 text-slate-600 text-xs font-mono group-hover:text-green-500 transition-colors">
-          <Cpu className="w-3 h-3" />
-          <span>SYSTEM VER 1.0</span>
+      <div className="mt-24 relative z-10 flex flex-col items-center gap-5 pb-8">
+        <Link
+          href="https://ac-inc.in/"
+          target="_blank"
+          className="flex items-center gap-2 px-5 py-2 rounded-full bg-green-900/5 border border-green-500/10 hover:border-green-500/30 text-green-600 hover:text-green-400 text-[10px] font-bold tracking-widest uppercase transition-all hover:bg-green-900/10"
+        >
+          <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+          Powered by AC Inc.
+        </Link>
+
+        <div className="flex items-center gap-4 px-6 py-3 rounded-full border border-slate-800 bg-[#0a0a0a]/80 hover:border-slate-600 transition-all backdrop-blur-md shadow-2xl">
+          <span className="text-[10px] md:text-xs font-mono text-slate-500">
+            DEV: <span className="text-slate-300 font-bold">NIHALZOWN</span>
+          </span>
+          <div className="w-px h-3 bg-slate-700" />
+
+          <div className="flex items-center gap-3">
+            <Link href="https://github.com/nihalzown" target="_blank" className="group">
+              <Github className="w-4 h-4 text-slate-500 group-hover:text-white transition-colors" />
+            </Link>
+            <Link href="https://www.instagram.com/nihalzown/" target="_blank" className="group">
+              <Instagram className="w-4 h-4 text-slate-500 group-hover:text-pink-500 transition-colors" />
+            </Link>
+          </div>
         </div>
-        <div className="w-px h-3 bg-slate-800" />
-        <div className="flex items-center gap-2 text-slate-500 text-xs font-bold tracking-widest group-hover:text-white transition-colors">
-          <span>CREATED BY NIHALZOWN</span>
-          <Github className="w-3 h-3 text-slate-600 group-hover:text-white" />
-        </div>
-      </Link>
+      </div>
     </main>
   );
 }
