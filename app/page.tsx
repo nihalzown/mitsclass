@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getSems } from "@/lib/lab-data";
 import { Terminal, Shield, ChevronRight, Cpu, Github } from "lucide-react";
+import InlineSearch from "@/components/Inlinesearch";
 
 export default function Home() {
   const semesters = getSems();
@@ -8,9 +9,12 @@ export default function Home() {
   return (
     <main className="min-h-screen flex flex-col items-center justify-center p-6 relative">
 
+      {/* Background Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-green-500/5 rounded-full blur-[100px] pointer-events-none" />
 
-      <div className="z-10 text-center max-w-3xl mb-16 space-y-6">
+      {/* --- FIX IS HERE --- */}
+      {/* 1. Changed 'z-10' to 'relative z-50' so this section floats ABOVE the cards below */}
+      <div className="relative z-50 text-center max-w-3xl mb-16 space-y-6 w-full">
 
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-green-900/20 border border-green-500/30 text-green-400 text-xs font-mono tracking-widest uppercase animate-pulse">
           <span className="w-2 h-2 rounded-full bg-green-500" />
@@ -25,8 +29,14 @@ export default function Home() {
           Secure Repository for KTU Lab Records. <br />
           Select a sector to initialize.
         </p>
+
+        <div className="mt-8 w-full max-w-lg mx-auto text-left">
+          <InlineSearch />
+        </div>
+        
       </div>
 
+      {/* Grid Section (Stays at z-10, so it sits BEHIND the search dropdown now) */}
       <div className="z-10 grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-5xl">
         {semesters.length === 0 ? (
           <div className="col-span-3 text-center p-10 border border-dashed border-red-900 bg-red-900/10 text-red-500 font-mono">
