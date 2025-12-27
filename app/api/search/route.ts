@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
+import { title } from "process";
+import { Subtitles } from "lucide-react";
 
 function extractAim(content: string): string | null {
     const lines = content.split('\n').slice(0, 15);
@@ -17,10 +19,10 @@ function extractAim(content: string): string | null {
 }
 
 
-export async function GET(){
+export async function GET() {
     const contentdir = path.join(process.cwd(), "content");
     const results: any[] = [];
-    if(!fs.existsSync(contentdir)) return NextResponse.json([]);
+    if (!fs.existsSync(contentdir)) return NextResponse.json([]);
 
     const semesters = fs.readdirSync(contentdir).filter(f => !f.startsWith('.'));
 
@@ -39,7 +41,21 @@ export async function GET(){
                 if (fs.lstatSync(filePath).isDirectory()) return;
 
                 let aim = null;
-                try{
-                    const
-                }
+                try {
+                    const content = fs.readFileSync(filePath, 'utf-8');
+                    aim = extractAim(content);
+                } catch (e) { }
+
+                results.push({
+                    id: `${semester}-${subject}-${file}`,
+                    title: file,
+                    Subtitle: aim || `Experiment in ${subject}`,
+                    semester,
+                    subject,
+                    url: `/${semester}/${subject}/${file}`
+                });
+            });
+        });
+    });
+    return NextResponse.json(results);
 }
