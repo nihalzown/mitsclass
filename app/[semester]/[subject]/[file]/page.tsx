@@ -4,6 +4,7 @@ import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { ArrowLeft, Download, FileCode, Home } from "lucide-react";
 import Link from "next/link";
 import CopyButton from "@/components/CopyButton";
+import { trackEvent } from "@/lib/analytics";
 
 interface PageProps {
   params: Promise<{
