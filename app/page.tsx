@@ -1,3 +1,7 @@
+"use client";
+
+import { useEffect } from "react";
+import { trackEvent } from "@/lib/analytics";
 import Link from "next/link";
 import { getSems } from "@/lib/lab-data";
 import { Terminal, Shield, ChevronRight, Cpu, Github, Instagram } from "lucide-react";
@@ -5,6 +9,9 @@ import InlineSearch from "@/components/Inlinesearch";
 
 export default function Home() {
   const semesters = getSems();
+  useEffect(() => {
+    trackEvent("visits");
+  }, []);
 
   return (
     <main className="min-h-screen flex flex-col items-center justify-center p-6 relative">
