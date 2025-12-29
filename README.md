@@ -14,8 +14,6 @@
 ## 🔗 System Access
 
 ### 🟢 [Launch Live Terminal (cybervault.ac-inc.in)](https://cybervault.ac-inc.in/)
-### 📂 [View Source Code (GitHub)](https://github.com/nihalzown/mitsclass)
-
 ---
 
 ## ⚡ Key Protocols (Features)
