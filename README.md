@@ -77,9 +77,11 @@ To deploy this vault on your local machine:
 │   ├── lab-data.ts       # Main Data Store (Experiment Codes)
 │   └── analytics.ts      # API Logic for Traffic Counting
 └── public/               # Static Assets
+```
 
 ## 👨‍💻 Developer Signature
 
 **Architect:** [Nihalzown](https://github.com/nihalzown)  
 **Organization:** [AC Inc.](https://ac-inc.in/)  
 **Version:** v1.1 [STABLE]
+
