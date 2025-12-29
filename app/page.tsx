@@ -1,20 +1,18 @@
-"use client";
-
-import { useEffect } from "react";
-import { trackEvent } from "@/lib/analytics";
 import Link from "next/link";
 import { getSems } from "@/lib/lab-data";
-import { Terminal, Shield, ChevronRight, Cpu, Github, Instagram } from "lucide-react";
+import { Shield, ChevronRight, Github, Instagram } from "lucide-react";
 import InlineSearch from "@/components/Inlinesearch";
+// --- CHANGE: Import the tracker component ---
+import AnalyticsTracker from "@/components/anaslysistracker";
 
 export default function Home() {
   const semesters = getSems();
-  useEffect(() => {
-    trackEvent("visits");
-  }, []);
 
   return (
     <main className="min-h-screen flex flex-col items-center justify-center p-6 relative">
+
+      {/* --- CHANGE: Add the Tracker Component Here --- */}
+      <AnalyticsTracker />
 
       {/* Background Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-green-500/5 rounded-full blur-[100px] pointer-events-none" />

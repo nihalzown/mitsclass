@@ -4,6 +4,7 @@ import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { ArrowLeft, FileCode, Home } from "lucide-react";
 import Link from "next/link";
 import CopyButton from "@/components/CopyButton";
+// --- CHANGE: Ensure this import matches the component filename (PascalCase) ---
 import DownloadButton from "@/components/downloadbtn";
 
 interface PageProps {
@@ -87,7 +88,7 @@ export default async function CodePage({ params }: PageProps) {
         <div className="flex items-center gap-2 md:gap-3 flex-shrink-0 ml-2">
           <CopyButton code={code} />
 
-          {/* --- CHANGE: REPLACED <a href...> WITH COMPONENT --- */}
+          {/* --- CHANGE: Using the Smart Component for Tracking --- */}
           <DownloadButton url={`/api/download?file=${semester}/${subjectName}/${fileName}`} />
 
         </div>
