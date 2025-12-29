@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Command } from "cmdk";
 import { Search, FileCode, ArrowRight, Loader2, Command as CommandIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -19,6 +19,7 @@ export default function InlineSearch() {
   const [loading, setLoading] = useState(true);
   const [open, setOpen] = useState(false);
   const router = useRouter();
+  const listRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     fetch("/api/search")
@@ -32,12 +33,9 @@ export default function InlineSearch() {
   return (
     <div className="w-full max-w-xl mx-auto relative z-50 font-sans group">
       
-      {/* Container */}
-      <Command
-        shouldFilter={true}
-        className="relative"
-      >
-        {/* --- THE SLEEK INPUT BAR --- */}
+      <Command shouldFilter={true} className="relative">
+        
+        {/* Input Bar */}
         <div 
           className={`
             flex items-center px-5 py-4 
@@ -45,14 +43,12 @@ export default function InlineSearch() {
             border rounded-2xl 
             transition-all duration-500 ease-out
             shadow-[0_0_0_1px_rgba(0,0,0,0)]
-            
             ${open 
               ? "border-green-500/50 shadow-[0_0_40px_-10px_rgba(34,197,94,0.2)] bg-black" 
               : "border-white/10 hover:border-white/20 hover:bg-[#0a0a0a]/80"
             }
           `}
         >
-          {/* Animated Search Icon */}
           <Search 
             className={`
               w-5 h-5 mr-4 transition-all duration-500
@@ -61,14 +57,18 @@ export default function InlineSearch() {
           />
           
           <Command.Input
-            onValueChange={(val) => setOpen(!!val)} 
+            onValueChange={(val) => {
+              setOpen(!!val);
+              if (listRef.current) {
+                listRef.current.scrollTop = 0;
+              }
+            }} 
             onFocus={() => setOpen(true)}
             onBlur={() => setTimeout(() => setOpen(false), 200)}
             placeholder="Search protocol (e.g. Stack)..."
             className="w-full bg-transparent text-lg text-white placeholder:text-slate-600 focus:outline-none font-medium tracking-wide"
           />
           
-          {/* Tech Badge for Loading / Shortcut */}
           <div className="flex items-center">
             {loading ? (
               <Loader2 className="w-4 h-4 text-green-500/50 animate-spin" />
@@ -89,7 +89,7 @@ export default function InlineSearch() {
           </div>
         </div>
 
-        {/* --- THE DROPDOWN RESULTS --- */}
+        {/* Results Dropdown */}
         <div 
             className={`
                 absolute top-full left-0 right-0 mt-4 
@@ -99,7 +99,10 @@ export default function InlineSearch() {
                 ${open && items.length > 0 ? "opacity-100 translate-y-0 scale-100" : "opacity-0 -translate-y-4 scale-95 pointer-events-none"}
             `}
         >
-            <Command.List className="max-h-[320px] overflow-y-auto p-2 scrollbar-hide">
+            <Command.List 
+              ref={listRef}
+              className="max-h-[320px] overflow-y-auto p-2 scrollbar-hide"
+            >
               <Command.Empty className="py-12 text-center">
                 <p className="text-slate-600 font-mono text-xs uppercase tracking-widest">No signals found</p>
               </Command.Empty>
@@ -112,7 +115,6 @@ export default function InlineSearch() {
                   className="group/item flex items-center justify-between p-3 rounded-xl cursor-pointer aria-selected:bg-white/5 transition-all duration-200"
                 >
                   <div className="flex items-center gap-4">
-                    {/* Icon Box */}
                     <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-white/5 border border-white/5 group-aria-selected/item:border-green-500/30 group-aria-selected/item:bg-green-500/10 transition-colors">
                       <FileCode className="w-5 h-5 text-slate-500 group-aria-selected/item:text-green-400 transition-colors" />
                     </div>
@@ -137,7 +139,6 @@ export default function InlineSearch() {
               ))}
             </Command.List>
             
-            {/* Footer Status Bar */}
             <div className="px-4 py-2 bg-white/[0.02] border-t border-white/5 flex justify-between items-center">
                <span className="text-[10px] text-slate-600 font-mono">INDEX_SIZE: {items.length}</span>
                <span className="text-[10px] text-slate-600 font-mono flex items-center gap-1">
