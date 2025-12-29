@@ -1,4 +1,4 @@
-# AC CODEX // CYBER VAULT
+# CYBER VAULT // AC CODEX
 
 ![Project Banner](https://img.shields.io/badge/STATUS-OPERATIONAL-success?style=for-the-badge)
 ![Next.js](https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
@@ -7,13 +7,14 @@
 
 > **"Secure Repository for KTU Lab Records."**
 
-AC CODEX (Cyber Vault) is a high-performance, stealth-themed academic repository built to store, view, and distribute laboratory source codes. It features a unique cyberpunk interface, real-time traffic analytics, and a seamless mobile experience—all running on a static, serverless architecture.
+**Cyber Vault** is a high-performance, stealth-themed academic repository built to store, view, and distribute laboratory source codes. It features a unique cyberpunk interface, real-time traffic analytics, and a seamless mobile experience—all running on a static, serverless architecture.
 
 ---
 
-## 🔗 Live Deployment
+## 🔗 System Access
 
-### [🚀 Access System Terminal (Live Site)](https://cybervault.ac-inc.in/)
+### 🟢 [Launch Live Terminal (cybervault.ac-inc.in)](https://cybervault.ac-inc.in/)
+### 📂 [View Source Code (GitHub)](https://github.com/nihalzown/mitsclass)
 
 ---
 
@@ -45,8 +46,8 @@ To deploy this vault on your local machine:
 
 1.  **Clone the Repository:**
     ```bash
-    git clone [https://github.com/nihalzown/ac-codex.git](https://github.com/nihalzown/ac-codex.git)
-    cd ac-codex
+    git clone [https://github.com/nihalzown/mitsclass.git](https://github.com/nihalzown/mitsclass.git)
+    cd mitsclass
     ```
 
 2.  **Install Dependencies:**
@@ -78,3 +79,9 @@ To deploy this vault on your local machine:
 │   ├── lab-data.ts       # Main Data Store (Experiment Codes)
 │   └── analytics.ts      # API Logic for Traffic Counting
 └── public/               # Static Assets
+
+## 👨‍💻 Developer Signature
+
+**Architect:** [Nihalzown](https://github.com/nihalzown)  
+**Organization:** [AC Inc.](https://ac-inc.in/)  
+**Version:** v1.1 [STABLE]
