@@ -1,14 +1,18 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Lock, Activity, Server, FileCode, Users, LogOut, ExternalLink } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { Lock, Activity, Server, FileCode, Users, LogOut, ExternalLink, Download, Percent, RefreshCcw } from "lucide-react";
+import { getAllStats } from "@/lib/analytics"; 
 
 export default function AdminPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
+  
+  // --- NEW: ANALYTICS STATE ---
+  const [stats, setStats] = useState({ visits: 0, downloads: 0 });
+  const [loading, setLoading] = useState(false);
 
   const ADMIN_PASS = "laboombum"; 
 
@@ -28,7 +32,26 @@ export default function AdminPage() {
     setPassword("");
   };
 
+  // --- NEW: FETCH STATS LOGIC ---
+  const fetchStats = async () => {
+    setLoading(true);
+    const data = await getAllStats();
+    setStats(data);
+    setLoading(false);
+  };
 
+  // Fetch data only after login
+  useEffect(() => {
+    if (isAuthenticated) fetchStats();
+  }, [isAuthenticated]);
+
+  // Calculate Engagement Rate
+  const engagementRate = stats.visits > 0 
+    ? ((stats.downloads / stats.visits) * 100).toFixed(1) 
+    : "0";
+
+
+  // --- LOCK SCREEN ---
   if (!isAuthenticated) {
     return (
       <div className="min-h-screen bg-[#050505] flex flex-col items-center justify-center p-6 text-center font-sans">
@@ -76,6 +99,7 @@ export default function AdminPage() {
   }
 
 
+  // --- DASHBOARD VIEW ---
   return (
     <div className="min-h-screen bg-[#050505] text-slate-300 font-sans p-6 md:p-12">
       
@@ -91,76 +115,132 @@ export default function AdminPage() {
           </p>
         </div>
 
-        <button 
-          onClick={handleLogout}
-          className="flex items-center gap-2 px-4 py-2 bg-red-900/10 text-red-500 border border-red-900/30 rounded-lg hover:bg-red-900/20 transition-all text-xs font-bold tracking-wider"
-        >
-          <LogOut className="w-4 h-4" />
-          LOGOUT
-        </button>
+        <div className="flex gap-3">
+            <button 
+                onClick={fetchStats} 
+                className="p-2 bg-slate-900 text-slate-400 rounded-lg hover:bg-slate-800 hover:text-white transition-colors"
+                title="Refresh Data"
+            >
+                <RefreshCcw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
+            </button>
+            <button 
+                onClick={handleLogout}
+                className="flex items-center gap-2 px-4 py-2 bg-red-900/10 text-red-500 border border-red-900/30 rounded-lg hover:bg-red-900/20 transition-all text-xs font-bold tracking-wider"
+            >
+                <LogOut className="w-4 h-4" />
+                LOGOUT
+            </button>
+        </div>
       </div>
 
-      {/* QUICK STATUS LINKS */}
-      {/* Since we don't have a backend, we link to the real analytic tools */}
-      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+      {/* --- SECTION 1: REAL-TIME ANALYTICS GRID --- */}
+      <div className="max-w-6xl mx-auto mb-12">
+        <h2 className="text-sm font-bold text-white mb-6 flex items-center gap-2 tracking-widest uppercase">
+            <Activity className="w-4 h-4 text-green-500" />
+            Live Intelligence
+        </h2>
         
-        <Link 
-          href="https://vercel.com/dashboard" 
-          target="_blank"
-          className="group p-6 bg-[#0a0a0a] border border-slate-800 rounded-xl hover:border-green-500/50 transition-all relative overflow-hidden"
-        >
-          <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
-            <Activity className="w-24 h-24 text-green-500" />
-          </div>
-          
-          <div className="flex items-center gap-3 mb-4">
-             <div className="p-2 bg-green-500/10 text-green-400 rounded-lg">
-                <Users className="w-6 h-6"/>
-             </div>
-             <span className="text-xs font-mono text-slate-500 uppercase tracking-widest">Traffic Control</span>
-          </div>
-          
-          <h3 className="text-2xl font-bold text-white mb-2">View Live Traffic</h3>
-          <p className="text-slate-500 text-sm mb-6 max-w-sm">
-            Access Vercel Analytics to see realtime visitor count, geographic data, and system performance.
-          </p>
-          
-          <div className="flex items-center text-green-500 text-sm font-bold">
-            OPEN VERCEL <ExternalLink className="w-4 h-4 ml-2" />
-          </div>
-        </Link>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* VISITS */}
+            <div className="p-6 bg-[#0a0a0a] border border-slate-800 rounded-xl relative overflow-hidden group hover:border-blue-500/30 transition-all">
+                <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity"><Users className="w-24 h-24 text-blue-500" /></div>
+                <div className="flex items-start justify-between mb-4 relative z-10">
+                    <div className="p-3 bg-blue-900/10 text-blue-400 rounded-lg border border-blue-500/20"><Activity className="w-6 h-6"/></div>
+                </div>
+                <div className="text-4xl font-black text-white mb-1 relative z-10">{stats.visits}</div>
+                <div className="text-xs text-slate-500 font-mono uppercase tracking-widest">Total Visits</div>
+            </div>
 
-        {/* Link to GitHub */}
-        <Link 
-          href="https://github.com/nihalzown" 
-          target="_blank"
-          className="group p-6 bg-[#0a0a0a] border border-slate-800 rounded-xl hover:border-white/30 transition-all relative overflow-hidden"
-        >
-           <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
-            <FileCode className="w-24 h-24 text-white" />
-          </div>
+            {/* DOWNLOADS */}
+            <div className="p-6 bg-[#0a0a0a] border border-slate-800 rounded-xl relative overflow-hidden group hover:border-green-500/30 transition-all">
+                <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity"><Download className="w-24 h-24 text-green-500" /></div>
+                <div className="flex items-start justify-between mb-4 relative z-10">
+                    <div className="p-3 bg-green-900/10 text-green-400 rounded-lg border border-green-500/20"><Download className="w-6 h-6"/></div>
+                </div>
+                <div className="text-4xl font-black text-white mb-1 relative z-10">{stats.downloads}</div>
+                <div className="text-xs text-slate-500 font-mono uppercase tracking-widest">Total Downloads</div>
+            </div>
 
-          <div className="flex items-center gap-3 mb-4">
-             <div className="p-2 bg-slate-800 text-white rounded-lg">
-                <Server className="w-6 h-6"/>
-             </div>
-             <span className="text-xs font-mono text-slate-500 uppercase tracking-widest">Source Control</span>
-          </div>
-          
-          <h3 className="text-2xl font-bold text-white mb-2">Manage Repository</h3>
-          <p className="text-slate-500 text-sm mb-6 max-w-sm">
-            Push updates, merge pull requests, and manage codebase directly via GitHub.
-          </p>
-          
-          <div className="flex items-center text-white text-sm font-bold">
-            OPEN GITHUB <ExternalLink className="w-4 h-4 ml-2" />
-          </div>
-        </Link>
+            {/* ENGAGEMENT */}
+            <div className="p-6 bg-[#0a0a0a] border border-slate-800 rounded-xl relative overflow-hidden group hover:border-purple-500/30 transition-all">
+                <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity"><Percent className="w-24 h-24 text-purple-500" /></div>
+                <div className="flex items-start justify-between mb-4 relative z-10">
+                    <div className="p-3 bg-purple-900/10 text-purple-400 rounded-lg border border-purple-500/20"><Percent className="w-6 h-6"/></div>
+                </div>
+                <div className="text-4xl font-black text-white mb-1 relative z-10">{engagementRate}%</div>
+                <div className="text-xs text-slate-500 font-mono uppercase tracking-widest">Engagement Rate</div>
+            </div>
+        </div>
+      </div>
+
+      {/* --- SECTION 2: EXTERNAL LINKS (Your Existing Links) --- */}
+      <div className="max-w-6xl mx-auto mb-12">
+        <h2 className="text-sm font-bold text-white mb-6 flex items-center gap-2 tracking-widest uppercase">
+            <Server className="w-4 h-4 text-slate-500" />
+            External Controls
+        </h2>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            
+            {/* Vercel Link */}
+            <Link 
+            href="https://vercel.com/dashboard" 
+            target="_blank"
+            className="group p-6 bg-[#0a0a0a] border border-slate-800 rounded-xl hover:border-white/20 transition-all relative overflow-hidden"
+            >
+            <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+                <Activity className="w-24 h-24 text-white" />
+            </div>
+            
+            <div className="flex items-center gap-3 mb-4">
+                <div className="p-2 bg-slate-800 text-white rounded-lg">
+                    <Users className="w-6 h-6"/>
+                </div>
+                <span className="text-xs font-mono text-slate-500 uppercase tracking-widest">Traffic Control</span>
+            </div>
+            
+            <h3 className="text-2xl font-bold text-white mb-2">View Vercel Analytics</h3>
+            <p className="text-slate-500 text-sm mb-6 max-w-sm">
+                Access Vercel Analytics to see geographic data, system performance, and deep traffic insights.
+            </p>
+            
+            <div className="flex items-center text-white text-sm font-bold">
+                OPEN VERCEL <ExternalLink className="w-4 h-4 ml-2" />
+            </div>
+            </Link>
+
+            {/* GitHub Link */}
+            <Link 
+            href="https://github.com/nihalzown" 
+            target="_blank"
+            className="group p-6 bg-[#0a0a0a] border border-slate-800 rounded-xl hover:border-white/20 transition-all relative overflow-hidden"
+            >
+            <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+                <FileCode className="w-24 h-24 text-white" />
+            </div>
+
+            <div className="flex items-center gap-3 mb-4">
+                <div className="p-2 bg-slate-800 text-white rounded-lg">
+                    <Server className="w-6 h-6"/>
+                </div>
+                <span className="text-xs font-mono text-slate-500 uppercase tracking-widest">Source Control</span>
+            </div>
+            
+            <h3 className="text-2xl font-bold text-white mb-2">Manage Repository</h3>
+            <p className="text-slate-500 text-sm mb-6 max-w-sm">
+                Push updates, merge pull requests, and manage codebase directly via GitHub.
+            </p>
+            
+            <div className="flex items-center text-white text-sm font-bold">
+                OPEN GITHUB <ExternalLink className="w-4 h-4 ml-2" />
+            </div>
+            </Link>
+        </div>
       </div>
 
       {/* System Info Footnote */}
       <div className="max-w-6xl mx-auto border-t border-slate-800 pt-6 flex items-center justify-between text-xs font-mono text-slate-600">
-        <div>AC CODEX v1.0 [STABLE]</div>
+        <div>AC CODEX v1.1 [LIVE]</div>
         <div>SERVER: VERCEL EDGE NETWORK</div>
       </div>
 
